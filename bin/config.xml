@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config>
+<env>QA</env>
+<browser>Chrome</browser>
+<browser>firefox</browser>
+<browser>Edge</browser>
+
+</config>

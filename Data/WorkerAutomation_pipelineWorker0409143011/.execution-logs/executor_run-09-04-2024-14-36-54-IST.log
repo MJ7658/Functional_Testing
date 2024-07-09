@@ -1,0 +1,11 @@
+Executor 2024/04/09 14:36:54 Received execution instructions under Application Name : WorkerAutomation
+Executor 2024/04/09 14:36:54 Executing Pipeline : pipelineWorker0409143011
+Executor 2024/04/09 14:36:54 Re-using execution ID
+Executor 2024/04/09 14:36:54 Execution ID : WorkerAutomation-pipelineWorker0409143011-Release1-1
+Executor 2024/04/09 14:36:54 Fetching latest metadata false true
+Executor 2024/04/09 14:36:55 downloads.go:95: ERROR: Error while writing to file C:\Users\satheshkumar.m\AppData\Local\Temp/.necessity/660ec484-0521-40ed-a971-0456245f1867/metadata.json
+Executor 2024/04/09 14:36:55 ERROR: Error while parsing metadata: unexpected end of JSON input
+Executor 2024/04/09 14:36:55 unexpected end of JSON input
+Executor 2024/04/09 14:36:55 Pipeline execution time: 989.3281ms
+Executor 2024/04/09 14:36:55 pipelines.go:238: PANIC: Pipeline 'pipelineWorker0409143011' failed
+Executor 2024/04/09 14:36:55 PANIC: Pipeline 'pipelineWorker0409143011' failed

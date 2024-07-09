@@ -1,0 +1,6216 @@
+{
+	"info": {
+		"_postman_id": "b09b7016-e8a7-4a5e-8e8f-08a4bfee366a",
+		"name": "IDP_Modernization_QA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PortfolioCreationScenarios",
+			"item": [
+				{
+					"name": "IDP_createPortfolioMOngoDB",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "aa31ea95-c9f7-4ebd-a764-bfa5eede39a6",
+								"exec": [
+									"\r",
+									"var portfolio_name = +pm.environment.get(\"portfolio_name\");\r",
+									"console.log(portfolio_name);\r",
+									"\r",
+									"pm.environment.set(\"portfolio_name\",portfolio_name++ + 1);\r",
+									"console.log(portfolio_name);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5496efd-2c06-4ffe-8fce-572ad314fea1",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"SUCCESS\");",
+									"});",
+									"",
+									"// pm.test(\"Response time is less than 200ms\", function () {",
+									"//     pm.expect(pm.response.responseTime).to.be.below(200);",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"portfolioName\":\"{{portfolio_name}}\",\"users\":[]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/portfolios",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IDP_createPortfolioMOngoDB_nullValueCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eca7e2f7-7978-45d7-84a7-e514e16f3cd2",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");",
+									"});",
+									"",
+									"// pm.test(\"Response time is less than 200ms\", function () {",
+									"//     pm.expect(pm.response.responseTime).to.be.below(200);",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"portfolioName\": \"\",\r\n\t\"connectorInfo\": {\r\n\t\t\"name\": \"\",\r\n\t\t\"url\": \"\",\r\n\t\t\"userid\": \"\",\r\n\t\t\"password\": \"\",\r\n\t\t\"token\": \"\"\r\n\t},\r\n\t\"env\": [{\r\n\t\t\"name\": \"\",\r\n\t\t\"level\": 1\r\n\t}],\r\n\t\"variables\": [{\r\n\t\t\"name\": \"\",\r\n\t\t\"secret\": true,\r\n\t\t\"envForVariable\": [{\r\n\t\t\t\"name\": \"\",\r\n\t\t\t\"value\": \"\"\r\n\t\t}],\r\n\t\t\"default\": \"\"\r\n\t}],\r\n\r\n\t\"release\": [{\r\n\t\t\"relNo\": \"\",\r\n\t\t\"envNames\": []\r\n\t}]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/portfolios",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IDP_createPortfolioMOngoDB_iNvalidVaueCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ca9888cb-0fea-49ab-aa5c-97816a2edaf5",
+								"exec": [
+									"pm.test(\"Status code should be 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");",
+									"});",
+									"",
+									"// pm.test(\"Response time is less than 200ms\", function () {",
+									"//     pm.expect(pm.response.responseTime).to.be.below(200);",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"portfolioName\": \"%%%$$$$%%^\",\r\n\t\"connectorInfo\": {\r\n\t\t\"name\": \"()()(*)\",\r\n\t\t\"url\": \"gyhjo%^^\",\r\n\t\t\"userid\": \"\",\r\n\t\t\"password\": \"!@#$%^&*()_+}{;'?><\",\r\n\t\t\"token\": \"12324&&^^%$$\"\r\n\t},\r\n\t\"env\": [{\r\n\t\t\"name\": \"QA\",\r\n\t\t\"level\": 1\r\n\t}],\r\n\t\"variables\": [{\r\n\t\t\"name\": \"testVariable\",\r\n\t\t\"secret\": true,\r\n\t\t\"envForVariable\": [{\r\n\t\t\t\"name\": \"\",\r\n\t\t\t\"value\": \"\"\r\n\t\t}],\r\n\t\t\"default\": \"\"\r\n\t}],\r\n\r\n\t\"release\": [{\r\n\t\t\"relNo\": \"\",\r\n\t\t\"envNames\": []\r\n\t}]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/portfolios",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IDP_createPortfolioMOngoDB_textInput",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8f18278d-b547-41d0-b87e-00c4fc3ee61a",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");",
+									"});",
+									"",
+									"// pm.test(\"Response time is less than 200ms\", function () {",
+									"//     pm.expect(pm.response.responseTime).to.be.below(200);",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Testing Portfololio API.",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/portfolios",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IDP_createPortfolioMOngoDB_BlankJSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "040763bf-99a2-406e-b20a-4d02bd60ce2b",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");",
+									"});",
+									"",
+									"// pm.test(\"Response time is less than 200ms\", function () {",
+									"//     pm.expect(pm.response.responseTime).to.be.below(200);",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/portfolios",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "GetPolicyInfo",
+			"item": [
+				{
+					"name": "getPolicyInfo",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "02d17f60-a2d7-4115-ba69-486e274be031",
+								"exec": [
+									"\r",
+									"var portfolio_name = +pm.environment.get(\"portfolio_name\");\r",
+									"console.log(portfolio_name);\r",
+									"\r",
+									"pm.environment.set(\"portfolio_name\",portfolio_name++ + 1);\r",
+									"console.log(portfolio_name);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "5585460f-36a6-415d-a4cc-3bb525903404",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body matches string policy Info\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"policyInfo\");",
+									"});",
+									"",
+									"// pm.test(\"Response time is less than 200ms\", function () {",
+									"//     pm.expect(pm.response.responseTime).to.be.below(200);",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{policyInfo(portfolioName:\\\"{{existing_PortName}}\\\"){policyName,users,permissions,resource,level}}\"}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPolicyInfoNullCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7ccd0343-1003-4500-b8c7-042f83893a61",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");",
+									"});",
+									"",
+									"// pm.test(\"Response time is less than 200ms\", function () {",
+									"//     pm.expect(pm.response.responseTime).to.be.below(200);",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{policyInfo(portfolioName:\\\"\\\"){policyName,users,permissions,resource,level}}\"}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/portfolios",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPolicyInfoInvalidValue",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1c4c5cc5-f78d-4021-875e-419c5b6e1075",
+								"exec": [
+									"pm.test(\"Status code should be 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");",
+									"});",
+									"",
+									"// pm.test(\"Response time is less than 200ms\", function () {",
+									"//     pm.expect(pm.response.responseTime).to.be.below(200);",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{policyInfo(portfolioName:\\\"@@###HHHJJK(())__\\\"){policyName,users,permissions,resource,level}}\"}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/portfolios",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PortfolioInfoScenarios",
+			"item": [
+				{
+					"name": "PortfolioInfo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c13a0c6c-69d8-4a04-b5f5-74ecc9c314fb",
+								"exec": [
+									"pm.test(\"Result contains Portfolio Name\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"portfolioName\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Response time is less than 200ms\", function () {\r",
+									"//     pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "df919db7-6ccb-47be-b080-7291e4c67832",
+								"exec": [
+									"var KeycloakTokenURL = pm.environment.get('KeycloakTokenURL');\r",
+									"var username = pm.environment.get('username');\r",
+									"var client_id = pm.environment.get('client_id');\r",
+									"var password = pm.environment.get('password');\r",
+									"var grant_type = pm.environment.get('grant_type');\r",
+									"\r",
+									"\r",
+									"var sdk = require('postman-collection');\r",
+									"\r",
+									"var isValidTokenRequest = new sdk.Request({\r",
+									"    url: KeycloakTokenURL, // Use an endpoint that requires being authenticated\r",
+									"    method: 'POST',\r",
+									"    header: [\r",
+									"        new sdk.Header({\r",
+									"            key: 'content-type',\r",
+									"            value: 'application/json',\r",
+									"        }),\r",
+									"        new sdk.Header({\r",
+									"            key: 'acccept',\r",
+									"            value: 'application/json',\r",
+									"        }),\r",
+									"        new sdk.Header({\r",
+									"            key: 'Authorization',\r",
+									"            value: 'Bearer ' + pm.globals.get(\"jwttoken\"),\r",
+									"        }),\r",
+									"    ]\r",
+									"});\r",
+									"\r",
+									"pm.sendRequest(isValidTokenRequest, function (err, response) {\r",
+									"    if (response.code === 401) {\r",
+									"        refreshToken();\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"function refreshToken() {\r",
+									"    var tokenRequest = new sdk.Request({\r",
+									"        url: KeycloakTokenURL,\r",
+									"        method: 'POST',\r",
+									"        header: [\r",
+									"            new sdk.Header({\r",
+									"                key: 'content-type',\r",
+									"                value: 'application/json'\r",
+									"            }),\r",
+									"            new sdk.Header({\r",
+									"                key: 'acccept',\r",
+									"                value: 'application/json'\r",
+									"            }),\r",
+									"        ],\r",
+									"        body: {\r",
+									"            mode: 'raw',\r",
+									"            raw: JSON.stringify({\r",
+									"                username: username,\r",
+									"                password: password,\r",
+									"                client_id: client_id,\r",
+									"                grant_type: grant_type\r",
+									"            })\r",
+									"        }\r",
+									"    });\r",
+									"\r",
+									"    pm.sendRequest(tokenRequest, function (err, response) {\r",
+									"        if (err) {\r",
+									"            throw err;\r",
+									"        }\r",
+									"\r",
+									"        if (response.code !== 200) {\r",
+									"            throw new Error('Could not log in.');\r",
+									"        }\r",
+									"\r",
+									"        pm.globals.set(\"jwttoken\", response.json().token);\r",
+									"        console.log(`New token has been set: ${response.json().token}`);\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{portfolioInfo(portfolioName:\\\"{{existing_PortName}}\\\"){variables{name,secret,envForVariable{name,value},default}}}\"}\n",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						},
+						"description": "Getting the list of portfolios from the database"
+					},
+					"response": []
+				},
+				{
+					"name": "PortfolioInfoInvalidInput",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9d169185-5b44-4142-a40c-f6ace2bd4a64",
+								"exec": [
+									"var KeycloakTokenURL = pm.environment.get('KeycloakTokenURL');\r",
+									"var username = pm.environment.get('username');\r",
+									"var client_id = pm.environment.get('client_id');\r",
+									"var password = pm.environment.get('password');\r",
+									"var grant_type = pm.environment.get('grant_type');\r",
+									"\r",
+									"\r",
+									"var sdk = require('postman-collection');\r",
+									"\r",
+									"var isValidTokenRequest = new sdk.Request({\r",
+									"    url: KeycloakTokenURL, // Use an endpoint that requires being authenticated\r",
+									"    method: 'POST',\r",
+									"    header: [\r",
+									"        new sdk.Header({\r",
+									"            key: 'content-type',\r",
+									"            value: 'application/json',\r",
+									"        }),\r",
+									"        new sdk.Header({\r",
+									"            key: 'acccept',\r",
+									"            value: 'application/json',\r",
+									"        }),\r",
+									"        new sdk.Header({\r",
+									"            key: 'Authorization',\r",
+									"            value: 'Bearer ' + pm.globals.get(\"jwttoken\"),\r",
+									"        }),\r",
+									"    ]\r",
+									"});\r",
+									"\r",
+									"pm.sendRequest(isValidTokenRequest, function (err, response) {\r",
+									"    if (response.code === 401) {\r",
+									"        refreshToken();\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"function refreshToken() {\r",
+									"    var tokenRequest = new sdk.Request({\r",
+									"        url: KeycloakTokenURL,\r",
+									"        method: 'POST',\r",
+									"        header: [\r",
+									"            new sdk.Header({\r",
+									"                key: 'content-type',\r",
+									"                value: 'application/json'\r",
+									"            }),\r",
+									"            new sdk.Header({\r",
+									"                key: 'acccept',\r",
+									"                value: 'application/json'\r",
+									"            }),\r",
+									"        ],\r",
+									"        body: {\r",
+									"            mode: 'raw',\r",
+									"            raw: JSON.stringify({\r",
+									"                username: username,\r",
+									"                password: password,\r",
+									"                client_id: client_id,\r",
+									"                grant_type: grant_type\r",
+									"            })\r",
+									"        }\r",
+									"    });\r",
+									"\r",
+									"    pm.sendRequest(tokenRequest, function (err, response) {\r",
+									"        if (err) {\r",
+									"            throw err;\r",
+									"        }\r",
+									"\r",
+									"        if (response.code !== 200) {\r",
+									"            throw new Error('Could not log in.');\r",
+									"        }\r",
+									"\r",
+									"        pm.globals.set(\"jwttoken\", response.json().token);\r",
+									"        console.log(`New token has been set: ${response.json().token}`);\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9c4722b6-aa41-480e-9411-eb3e10794c68",
+								"exec": [
+									"pm.test(\"Result contains Failed \", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"no documents\");\r",
+									"});\r",
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{portfolioInfo(portfolioName:\\\"##$$$&&**\\\"){variables{name,secret,envForVariable{name,value},default}}}\"}\n",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						},
+						"description": "Getting the list of portfolios from the database"
+					},
+					"response": []
+				},
+				{
+					"name": "portfolioInfoNullCheckValue",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "462e7a11-a9f7-405a-b855-9b7d56566454",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"no documents\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"no documents\");\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Response time is less than 200ms\", function () {\r",
+									"//     pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{portfolioInfo(portfolioName:\\\"\\\"){variables{name,secret,envForVariable{name,value},default}}}\"}\n",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "portfolioInfoNullBlankJSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7d69898b-5758-4ced-a4c2-c547d92d2d13",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No data found\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Response time is less than 200ms\", function () {\r",
+									"//     pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PortfolioInfoTextInput",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d53e60e4-89be-4fa8-bbd7-d400355c3e1d",
+								"exec": [
+									"var KeycloakTokenURL = pm.environment.get('KeycloakTokenURL');\r",
+									"var username = pm.environment.get('username');\r",
+									"var client_id = pm.environment.get('client_id');\r",
+									"var password = pm.environment.get('password');\r",
+									"var grant_type = pm.environment.get('grant_type');\r",
+									"\r",
+									"\r",
+									"var sdk = require('postman-collection');\r",
+									"\r",
+									"var isValidTokenRequest = new sdk.Request({\r",
+									"    url: KeycloakTokenURL, // Use an endpoint that requires being authenticated\r",
+									"    method: 'POST',\r",
+									"    header: [\r",
+									"        new sdk.Header({\r",
+									"            key: 'content-type',\r",
+									"            value: 'application/json',\r",
+									"        }),\r",
+									"        new sdk.Header({\r",
+									"            key: 'acccept',\r",
+									"            value: 'application/json',\r",
+									"        }),\r",
+									"        new sdk.Header({\r",
+									"            key: 'Authorization',\r",
+									"            value: 'Bearer ' + pm.globals.get(\"jwttoken\"),\r",
+									"        }),\r",
+									"    ]\r",
+									"});\r",
+									"\r",
+									"pm.sendRequest(isValidTokenRequest, function (err, response) {\r",
+									"    if (response.code === 401) {\r",
+									"        refreshToken();\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"function refreshToken() {\r",
+									"    var tokenRequest = new sdk.Request({\r",
+									"        url: KeycloakTokenURL,\r",
+									"        method: 'POST',\r",
+									"        header: [\r",
+									"            new sdk.Header({\r",
+									"                key: 'content-type',\r",
+									"                value: 'application/json'\r",
+									"            }),\r",
+									"            new sdk.Header({\r",
+									"                key: 'acccept',\r",
+									"                value: 'application/json'\r",
+									"            }),\r",
+									"        ],\r",
+									"        body: {\r",
+									"            mode: 'raw',\r",
+									"            raw: JSON.stringify({\r",
+									"                username: username,\r",
+									"                password: password,\r",
+									"                client_id: client_id,\r",
+									"                grant_type: grant_type\r",
+									"            })\r",
+									"        }\r",
+									"    });\r",
+									"\r",
+									"    pm.sendRequest(tokenRequest, function (err, response) {\r",
+									"        if (err) {\r",
+									"            throw err;\r",
+									"        }\r",
+									"\r",
+									"        if (response.code !== 200) {\r",
+									"            throw new Error('Could not log in.');\r",
+									"        }\r",
+									"\r",
+									"        pm.globals.set(\"jwttoken\", response.json().token);\r",
+									"        console.log(`New token has been set: ${response.json().token}`);\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "63b3f6bf-922d-47ee-be4d-c55c04e1a197",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No data found\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\"Test API for Text Input!\"",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						},
+						"description": "Getting the list of portfolios from the database"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "de6f068e-9964-412c-8a75-11de22848c8f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "0edaff92-804c-4f2c-a7f6-c49f3a23eddc",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PortfolioListScenarios",
+			"item": [
+				{
+					"name": "PortfolioList",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7762e43a-3e50-448d-8bbf-54e40fd64965",
+								"exec": [
+									"var KeycloakTokenURL = pm.environment.get('KeycloakTokenURL');\r",
+									"var username = pm.environment.get('username');\r",
+									"var client_id = pm.environment.get('client_id');\r",
+									"var password = pm.environment.get('password');\r",
+									"var grant_type = pm.environment.get('grant_type');\r",
+									"\r",
+									"\r",
+									"var sdk = require('postman-collection');\r",
+									"\r",
+									"var isValidTokenRequest = new sdk.Request({\r",
+									"    url: KeycloakTokenURL, // Use an endpoint that requires being authenticated\r",
+									"    method: 'POST',\r",
+									"    header: [\r",
+									"        new sdk.Header({\r",
+									"            key: 'content-type',\r",
+									"            value: 'application/json',\r",
+									"        }),\r",
+									"        new sdk.Header({\r",
+									"            key: 'acccept',\r",
+									"            value: 'application/json',\r",
+									"        }),\r",
+									"        new sdk.Header({\r",
+									"            key: 'Authorization',\r",
+									"            value: 'Bearer ' + pm.globals.get(\"jwttoken\"),\r",
+									"        }),\r",
+									"    ]\r",
+									"});\r",
+									"\r",
+									"pm.sendRequest(isValidTokenRequest, function (err, response) {\r",
+									"    if (response.code === 401) {\r",
+									"        refreshToken();\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"function refreshToken() {\r",
+									"    var tokenRequest = new sdk.Request({\r",
+									"        url: KeycloakTokenURL,\r",
+									"        method: 'POST',\r",
+									"        header: [\r",
+									"            new sdk.Header({\r",
+									"                key: 'content-type',\r",
+									"                value: 'application/json'\r",
+									"            }),\r",
+									"            new sdk.Header({\r",
+									"                key: 'acccept',\r",
+									"                value: 'application/json'\r",
+									"            }),\r",
+									"        ],\r",
+									"        body: {\r",
+									"            mode: 'raw',\r",
+									"            raw: JSON.stringify({\r",
+									"                username: username,\r",
+									"                password: password,\r",
+									"                client_id: client_id,\r",
+									"                grant_type: grant_type\r",
+									"            })\r",
+									"        }\r",
+									"    });\r",
+									"\r",
+									"    pm.sendRequest(tokenRequest, function (err, response) {\r",
+									"        if (err) {\r",
+									"            throw err;\r",
+									"        }\r",
+									"\r",
+									"        if (response.code !== 200) {\r",
+									"            throw new Error('Could not log in.');\r",
+									"        }\r",
+									"\r",
+									"        pm.globals.set(\"jwttoken\", response.json().token);\r",
+									"        console.log(`New token has been set: ${response.json().token}`);\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d220b5be-3670-4617-92e5-a64db57661fa",
+								"exec": [
+									"pm.test(\"Result contains Portfolio Name\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"portfolioName\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Response time is less than 200ms\", function () {\r",
+									"//     pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{portfolioList{portfolioName}}\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						},
+						"description": "Getting the list of portfolios from the database"
+					},
+					"response": []
+				},
+				{
+					"name": "PortfolioListInvalidInput",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2a05d1ad-0f32-4c1c-939f-c34935ec2d87",
+								"exec": [
+									"var KeycloakTokenURL = pm.environment.get('KeycloakTokenURL');\r",
+									"var username = pm.environment.get('username');\r",
+									"var client_id = pm.environment.get('client_id');\r",
+									"var password = pm.environment.get('password');\r",
+									"var grant_type = pm.environment.get('grant_type');\r",
+									"\r",
+									"\r",
+									"var sdk = require('postman-collection');\r",
+									"\r",
+									"var isValidTokenRequest = new sdk.Request({\r",
+									"    url: KeycloakTokenURL, // Use an endpoint that requires being authenticated\r",
+									"    method: 'POST',\r",
+									"    header: [\r",
+									"        new sdk.Header({\r",
+									"            key: 'content-type',\r",
+									"            value: 'application/json',\r",
+									"        }),\r",
+									"        new sdk.Header({\r",
+									"            key: 'acccept',\r",
+									"            value: 'application/json',\r",
+									"        }),\r",
+									"        new sdk.Header({\r",
+									"            key: 'Authorization',\r",
+									"            value: 'Bearer ' + pm.globals.get(\"jwttoken\"),\r",
+									"        }),\r",
+									"    ]\r",
+									"});\r",
+									"\r",
+									"pm.sendRequest(isValidTokenRequest, function (err, response) {\r",
+									"    if (response.code === 401) {\r",
+									"        refreshToken();\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"function refreshToken() {\r",
+									"    var tokenRequest = new sdk.Request({\r",
+									"        url: KeycloakTokenURL,\r",
+									"        method: 'POST',\r",
+									"        header: [\r",
+									"            new sdk.Header({\r",
+									"                key: 'content-type',\r",
+									"                value: 'application/json'\r",
+									"            }),\r",
+									"            new sdk.Header({\r",
+									"                key: 'acccept',\r",
+									"                value: 'application/json'\r",
+									"            }),\r",
+									"        ],\r",
+									"        body: {\r",
+									"            mode: 'raw',\r",
+									"            raw: JSON.stringify({\r",
+									"                username: username,\r",
+									"                password: password,\r",
+									"                client_id: client_id,\r",
+									"                grant_type: grant_type\r",
+									"            })\r",
+									"        }\r",
+									"    });\r",
+									"\r",
+									"    pm.sendRequest(tokenRequest, function (err, response) {\r",
+									"        if (err) {\r",
+									"            throw err;\r",
+									"        }\r",
+									"\r",
+									"        if (response.code !== 200) {\r",
+									"            throw new Error('Could not log in.');\r",
+									"        }\r",
+									"\r",
+									"        pm.globals.set(\"jwttoken\", response.json().token);\r",
+									"        console.log(`New token has been set: ${response.json().token}`);\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b5834061-1505-4476-9865-f1af5c99cd2e",
+								"exec": [
+									"pm.test(\"Result contains Syntax error\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Error\");\r",
+									"});\r",
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{portfolioList{$$%%^^&&}}\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						},
+						"description": "Getting the list of portfolios from the database"
+					},
+					"response": []
+				},
+				{
+					"name": "portfolioListNullCheckValue",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4cdd8780-f2fa-45c5-88a6-979fd876b4a2",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Cannot query field\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"not\");\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Response time is less than 200ms\", function () {\r",
+									"//     pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{portfolioList{null}}\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "portfolioListNullBlankJSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dbde4895-f02b-4230-96e5-847ce6924276",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No data found\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Response time is less than 200ms\", function () {\r",
+									"//     pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PortfolioListTextInput",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8482c10a-9dd8-4d63-b2bb-a6e411184fe9",
+								"exec": [
+									"var KeycloakTokenURL = pm.environment.get('KeycloakTokenURL');\r",
+									"var username = pm.environment.get('username');\r",
+									"var client_id = pm.environment.get('client_id');\r",
+									"var password = pm.environment.get('password');\r",
+									"var grant_type = pm.environment.get('grant_type');\r",
+									"\r",
+									"\r",
+									"var sdk = require('postman-collection');\r",
+									"\r",
+									"var isValidTokenRequest = new sdk.Request({\r",
+									"    url: KeycloakTokenURL, // Use an endpoint that requires being authenticated\r",
+									"    method: 'POST',\r",
+									"    header: [\r",
+									"        new sdk.Header({\r",
+									"            key: 'content-type',\r",
+									"            value: 'application/json',\r",
+									"        }),\r",
+									"        new sdk.Header({\r",
+									"            key: 'acccept',\r",
+									"            value: 'application/json',\r",
+									"        }),\r",
+									"        new sdk.Header({\r",
+									"            key: 'Authorization',\r",
+									"            value: 'Bearer ' + pm.globals.get(\"jwttoken\"),\r",
+									"        }),\r",
+									"    ]\r",
+									"});\r",
+									"\r",
+									"pm.sendRequest(isValidTokenRequest, function (err, response) {\r",
+									"    if (response.code === 401) {\r",
+									"        refreshToken();\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"function refreshToken() {\r",
+									"    var tokenRequest = new sdk.Request({\r",
+									"        url: KeycloakTokenURL,\r",
+									"        method: 'POST',\r",
+									"        header: [\r",
+									"            new sdk.Header({\r",
+									"                key: 'content-type',\r",
+									"                value: 'application/json'\r",
+									"            }),\r",
+									"            new sdk.Header({\r",
+									"                key: 'acccept',\r",
+									"                value: 'application/json'\r",
+									"            }),\r",
+									"        ],\r",
+									"        body: {\r",
+									"            mode: 'raw',\r",
+									"            raw: JSON.stringify({\r",
+									"                username: username,\r",
+									"                password: password,\r",
+									"                client_id: client_id,\r",
+									"                grant_type: grant_type\r",
+									"            })\r",
+									"        }\r",
+									"    });\r",
+									"\r",
+									"    pm.sendRequest(tokenRequest, function (err, response) {\r",
+									"        if (err) {\r",
+									"            throw err;\r",
+									"        }\r",
+									"\r",
+									"        if (response.code !== 200) {\r",
+									"            throw new Error('Could not log in.');\r",
+									"        }\r",
+									"\r",
+									"        pm.globals.set(\"jwttoken\", response.json().token);\r",
+									"        console.log(`New token has been set: ${response.json().token}`);\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "449341e9-7d15-46be-bc86-6e0fabead0c1",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No data found\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\"This Is Text API!\"",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						},
+						"description": "Getting the list of portfolios from the database"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "fb6a5278-6e47-48c4-afc7-e2ec141c23f5",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "08df0d68-4f9f-4052-9364-4a049f2779c1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ApplicationCreationScenarios",
+			"item": [
+				{
+					"name": "ApplicationCreationValidation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9c60ea35-85fe-4e89-ba57-8db4a438d7be",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Success\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"SUCCESS\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "07f5dbd8-ca53-4880-8c89-f414561a703a",
+								"exec": [
+									"var application_name = +pm.environment.get(\"application_name\");\r",
+									"console.log(application_name);\r",
+									"\r",
+									"pm.environment.set(\"application_name\",application_name++  + 1);\r",
+									"console.log(application_name);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"{{application_name}}\",\"portfolioName\":\"{{portfolio_name}}\",\"users\":[]}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/portfolios/{{portfolio_name}}/applications",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios",
+								"{{portfolio_name}}",
+								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ApplicationCreationInvalidValueInput",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2982dfa1-a386-4cd0-b818-a8ac08cc5b4e",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Invalid Value\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"###$$%%^^&&&**(())\",\"portfolioName\":\"{{portfolio_name}}\",\"users\":[]}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/portfolios/{{portfolio_name}}/applications",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios",
+								"{{portfolio_name}}",
+								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ApplicationCreationBlankValueInput",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "97ec4913-e9f8-40d7-9da4-9dcf57129320",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Invalid application name\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"\",\"portfolioName\":\"{{portfolio_name}}\",\"users\":[]}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/portfolios/{{portfolio_name}}/applications",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios",
+								"{{portfolio_name}}",
+								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ApplicationCreationTextValueInput",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d0016a4b-1e87-4934-b3b2-7bbedbe880fe",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Invalid request\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\"This is Text Input!\"",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/portfolios/{{portfolio_name}}/applications",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios",
+								"{{portfolio_name}}",
+								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ApplicationCreationBlankJsonCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2458a9b8-9617-4b72-95ca-a35b68830d48",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Invalid request payload\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid request\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/portfolios/{{portfolio_name}}/applications",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios",
+								"{{portfolio_name}}",
+								"applications"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "CreateVariable",
+			"item": [
+				{
+					"name": "CreateVariableDuplicateCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fbe5bf8b-e850-44b3-8b8f-6e7901986826",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Variable already exist\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"already\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"\\n         mutation{\\n           application(operationOnField:\\\"create\\\",\\n                    fieldToUpdate:\\\"variables\\\",\\n                    applicationName:\\\"{{application_name}}\\\",\\n                    body:\\\"{\\\\\\\"envForVariable\\\\\\\":[],\\\\\\\"name\\\\\\\":\\\\\\\"host\\\\\\\",\\\\\\\"default\\\\\\\":\\\\\\\"10.82.128.38\\\\\\\"}\\\"){\\n                    portfolioName\\n           }\\n         }\\n      \"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateVariableValidation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f92a720d-547d-4a57-9b41-60f2d0125249",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains traceability\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"data\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8dc3d6d4-2659-43c6-a480-93719ab0cf15",
+								"exec": [
+									"var Var_name = +pm.environment.get(\"Var_name\");\r",
+									"\r",
+									"pm.environment.set(\"Var_name\",Var_name++ + 1);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"\\n         mutation{\\n           application(operationOnField:\\\"create\\\",\\n                    fieldToUpdate:\\\"variables\\\",\\n                    applicationName:\\\"{{application_name}}\\\",\\n                    body:\\\"{\\\\\\\"envForVariable\\\\\\\":[],\\\\\\\"name\\\\\\\":\\\\\\\"{{Var_name}}\\\\\\\",\\\\\\\"default\\\\\\\":\\\\\\\"10.82.128.38\\\\\\\"}\\\"){\\n                    portfolioName\\n           }\\n         }\\n      \"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateVariableBlankValidation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f94c129c-30e5-45e9-897a-ac7bd84bec40",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains not allowed\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "762d752b-6ba6-40ad-ac77-68aeef9b3e8e",
+								"exec": [
+									"var Var_name = +pm.environment.get(\"Var_name\");\r",
+									"\r",
+									"pm.environment.set(\"Var_name1\",Var_name++ + 1);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"\\n         mutation{\\n           application(operationOnField:\\\"create\\\",\\n                    fieldToUpdate:\\\"variables\\\",\\n                    applicationName:\\\"{{application_name}}\\\",\\n                    body:\\\"{\\\\\\\"envForVariable\\\\\\\":[],\\\\\\\"name\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"default\\\\\\\":\\\\\\\"10.82.128.38\\\\\\\"}\\\"){\\n                    portfolioName\\n           }\\n         }\\n      \"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "CreateRelease",
+			"item": [
+				{
+					"name": "CreateReleaseDuplicateCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3ba624e7-fded-4038-9b83-164535e1cd14",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Variable already exist\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"already\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"\\n        mutation{\\n          application(operationOnField:\\\"create\\\",fieldToUpdate:\\\"releases\\\",applicationName:\\\"{{application_name}}\\\",body:\\\"{\\\\\\\"envNames\\\\\\\":[\\\\\\\"QA\\\\\\\"],\\\\\\\"canEdit\\\\\\\":true,\\\\\\\"canDelete\\\\\\\":true,\\\\\\\"relNo\\\\\\\":\\\\\\\"1.2.3_test\\\\\\\"}\\\"){\\n            name\\n          }\\n        }\\n      \"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateReleaseValidation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "791daae7-21c8-43df-a3c7-40727e0fb78b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains application name\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"data\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e92966ac-1187-42d2-b306-fd973dc671b4",
+								"exec": [
+									"var Rel_name = +pm.environment.get(\"Rel_name\");\r",
+									"\r",
+									"pm.environment.set(\"Rel_name\",Rel_name++ + 1);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"\\n        mutation{\\n          application(operationOnField:\\\"create\\\",fieldToUpdate:\\\"releases\\\",applicationName:\\\"{{application_name}}\\\",body:\\\"{\\\\\\\"envNames\\\\\\\":[\\\\\\\"QA\\\\\\\"],\\\\\\\"canEdit\\\\\\\":true,\\\\\\\"canDelete\\\\\\\":true,\\\\\\\"relNo\\\\\\\":\\\\\\\"{{Rel_name}}\\\\\\\"}\\\"){\\n            name\\n          }\\n        }\\n      \"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateReleaseBlankValidation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "59945f16-20aa-485d-8a91-787fac555669",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains not allowed\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "22f15ddc-064e-4d7f-9bea-c15940d568ac",
+								"exec": [
+									"var Var_name = +pm.environment.get(\"Var_name\");\r",
+									"\r",
+									"pm.environment.set(\"Var_name1\",Var_name++ + 1);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"\\n        mutation{\\n          application(operationOnField:\\\"create\\\",fieldToUpdate:\\\"releases\\\",applicationName:\\\"{{application_name}}\\\",body:\\\"{\\\\\\\"envNames\\\\\\\":[\\\\\\\"QA\\\\\\\"],\\\\\\\"canEdit\\\\\\\":true,\\\\\\\"canDelete\\\\\\\":true,\\\\\\\"relNo\\\\\\\":\\\\\\\"\\\\\\\"}\\\"){\\n            name\\n          }\\n        }\\n      \"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "CreateEnvironment",
+			"item": [
+				{
+					"name": "CreateEnvironmentDuplicateCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "49d2070b-e42c-420f-a047-cc39ca8a7c2e",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Variable already exist\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"already\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"\\n               mutation{\\n                 application(\\n                 operationOnField:\\\"create\\\",\\n                 fieldToUpdate:\\\"environments\\\",\\n                 applicationName:\\\"{{application_name}}\\\",\\n                 body:\\\"{\\\\\\\"name\\\\\\\":\\\\\\\"Test\\\\\\\",\\\\\\\"level\\\\\\\":2}\\\"\\n                 ){\\n                  name\\n                 }\\n               }\\n             \"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateEnvironmentValidation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "28139236-aa6c-4c15-851c-5a30822656ea",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains environment application\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"data\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "78039ce7-5e74-47d8-8fc3-493d8f9c144d",
+								"exec": [
+									"var env_name = +pm.environment.get(\"env_name\");\r",
+									"\r",
+									"pm.environment.set(\"env_name\",env_name++ + 1);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"\\n               mutation{\\n                 application(\\n                 operationOnField:\\\"create\\\",\\n                 fieldToUpdate:\\\"environments\\\",\\n                 applicationName:\\\"{{application_name}}\\\",\\n                 body:\\\"{\\\\\\\"name\\\\\\\":\\\\\\\"{{env_name}}}}\\\\\\\",\\\\\\\"level\\\\\\\":2}\\\"\\n                 ){\\n                  name\\n                 }\\n               }\\n             \"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateEnvironmentBlankValidation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ec0fa99f-3176-4970-8dac-7bc6da66aaed",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains not allowed\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1ee6b6a7-e7a6-488c-b237-6474d7d78e1a",
+								"exec": [
+									"var Var_name = +pm.environment.get(\"Var_name\");\r",
+									"\r",
+									"pm.environment.set(\"Var_name1\",Var_name++ + 1);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"\\n               mutation{\\n                 application(\\n                 operationOnField:\\\"create\\\",\\n                 fieldToUpdate:\\\"environments\\\",\\n                 applicationName:\\\"{{application_name}}\\\",\\n                 body:\\\"{\\\\\\\"name\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"level\\\\\\\":2}\\\"\\n                 ){\\n                  name\\n                 }\\n               }\\n             \"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ApplicationInfoScenarios",
+			"item": [
+				{
+					"name": "ApplicationInfo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "34d9c741-b68f-4939-814a-c53db6607d2d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Application Info\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"applicationInfo\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{applicationInfo(applicationName:\\\"{{existing_AppName}}\\\"){release{relNo,envNames}}}\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ApplicationInfoNullValueCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5bf2e920-a6e8-4297-b028-0d286b0d2a82",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body contains Null string data\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"no documents\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{applicationInfo(applicationName:\\\"null\\\"){release{relNo,envNames}}}\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ApplicationInfoBlankInput",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a4887be1-39e7-4b83-8591-38ff20941f1b",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Failed\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Failed\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{applicationInfo(applicationName:\\\"\\\"){release{relNo,envNames}}}\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ApplicationInfoTextInput",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6f5fb335-df87-407c-93fd-b1aed0cd04ce",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "596f2797-fae7-4ddb-b0db-cf2ce15682f8",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Invalid Request\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\"This is API Test!\"",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ApplicationInfoInvalidValueCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b993d9d7-3563-4f2d-8dd2-697605e47ab7",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"no documents\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"no documents\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{applicationInfo(applicationName:\\\"##$$%%^^&&**\\\"){release{relNo,envNames}}}\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ApplicationListScenarios",
+			"item": [
+				{
+					"name": "ApplicationList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5dcafc23-f088-48aa-a7ba-c3e80a92d168",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Application list\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"applicationList\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{applicationList{name,portfolioName}}\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ApplicationListNullValueCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7f8c5de8-c585-4196-880f-45d63201532f",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body contains No data\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Cannot query field\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{applicationList{null,portfolioName}}\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ApplicationListBlankInput",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b2b56a68-403a-4b3f-994f-30862885f8a8",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body contains No data\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ApplicationListTextInput",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6a9061b9-dea8-4f25-8a68-cf89beb6f717",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "86103767-e273-4137-9a63-49f040ed4d72",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body contains No data\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\"This is API Test!\"",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ApplicationListInvalidValueCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7d05de0d-4ca8-450e-bb22-3a541db64bc5",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body contains No data\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{applicationList{########&&&**((,portfolioName}}\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PipelineCreationScenarios",
+			"item": [
+				{
+					"name": "PipelineCreationValidation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d40f6018-d7f2-492b-bb56-b26fde4ecab3",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Success\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"SUCCESS\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bbdbec11-1f6a-4358-9108-832fcef0edcb",
+								"exec": [
+									"var pipeline_name = +pm.environment.get(\"pipeline_name\");\r",
+									"console.log(pipeline_name);\r",
+									"\r",
+									"pm.environment.set(\"pipeline_name\",pipeline_name++  + 1);\r",
+									"console.log(pipeline_name);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"applicationName\":\"{{application_name}}\",\"name\":\"{{pipeline_name}}\",\"pipelineFlowType\":\"\",\"stages\":[{\"name\":\"SCM\",\"steps\":[\"{\\\"name\\\":\\\"Code Checkout\\\",\\\"pluginName\\\":\\\"gitscm_0.0.19\\\",\\\"pluginInput\\\":{\\\"branch\\\":\\\"master\\\",\\\"browser\\\":\\\"Chrome\\\",\\\"browserUrl\\\":null,\\\"gitUrl\\\":\\\"https://infygithub.ad.infosys.com/idp-sample-apps-for-verification/angular-shopping-cart.git\\\",\\\"password\\\":\\\"Infy1234+\\\",\\\"unsetProxy\\\":true,\\\"username\\\":\\\"ciplatform\\\"}}\"]},{\"name\":\"BUILD\",\"steps\":[\"{\\\"name\\\":\\\"Build Code\\\",\\\"pluginName\\\":\\\"angular_build_0.0.2\\\",\\\"pluginInput\\\":{\\\"compileArguments\\\":\\\"ng build\\\",\\\"npmArguments\\\":\\\"install --unsafe-perm\\\",\\\"proxyPassword\\\":\\\"${SECRET:K0:5kWS0p0L0nNKafGCAkrKRKR61RyyfNiOY94UKTE7WInoto+ytD9i/M7gYRLUX5Iz}\\\",\\\"proxyUrl\\\":\\\"\\\",\\\"proxyUsername\\\":\\\"\\\",\\\"workingDirectory\\\":\\\"angular-shopping-cart\\\"}}\",\"{\\\"name\\\":\\\"Code Analysis\\\",\\\"pluginName\\\":\\\"angular_codeanalysis_tslint_0.0.2\\\",\\\"pluginInput\\\":{\\\"arguments\\\":null,\\\"workingDirectory\\\":\\\"angular-shopping-cart\\\"}}\",\"{\\\"name\\\":\\\"Unit Testing\\\",\\\"pluginName\\\":\\\"angular_unittest_karma-jasmine_codecoverage_0.0.2\\\",\\\"pluginInput\\\":{\\\"projectName\\\":\\\"angular-shopping-cart\\\",\\\"workingDirectory\\\":\\\"angular-shopping-cart\\\"}}\",\"{\\\"name\\\":\\\"Docker Upload\\\",\\\"pluginName\\\":\\\"docker_build_0.0.5\\\",\\\"pluginInput\\\":{\\\"dockerFilePath\\\":\\\"angular-shopping-cart/Dockerfile\\\",\\\"dockerPassword\\\":\\\"${SECRET:K0:isnxJV6NaDnNN3wp3kM73A}\\\",\\\"dockerRegistryUrl\\\":\\\"https://infydtr.ad.infosys.com\\\",\\\"dockerRepo\\\":\\\"ciplatform/idp-docker\\\",\\\"dockerUsername\\\":\\\"ciplatform\\\",\\\"tagName\\\":\\\"CXO-2.0\\\"}}\"]},{\"name\":\"Approval\",\"steps\":[\"{\\\"name\\\":\\\"Approval\\\",\\\"pluginName\\\":\\\"approval_0.0.1\\\",\\\"pluginInput\\\":{\\\"emailId\\\":[\\\"KrishnaKanth_BN@infosys.com\\\",\\\"manohar.vijayakumar@infosys.com\\\",\\\"namrata_ramnani@infosys.com\\\",null,null]}}\"]},{\"name\":\"Deploy\",\"steps\":[\"{\\\"name\\\":\\\"Deploy\\\",\\\"pluginName\\\":\\\"docker_deploy_0.0.4\\\",\\\"pluginInput\\\":{\\\"dockerFilePath\\\":\\\"angular-shopping-cart/docker-compose.yml\\\",\\\"dockerPassword\\\":\\\"${SECRET:K0:isnxJV6NaDnNN3wp3kM73A}\\\",\\\"dockerRegistryUrl\\\":\\\"infydtr.ad.infosys.com\\\",\\\"dockerRepo\\\":\\\"ciplatform/idp-docker\\\",\\\"dockerUsername\\\":\\\"ciplatform\\\",\\\"stackName\\\":\\\"cxostack\\\",\\\"tagName\\\":\\\"CXO-2.0\\\"}}\"]},{\"name\":\"Test\",\"steps\":[\"{\\\"name\\\":\\\"iFast\\\",\\\"pluginName\\\":\\\"iFast_0.0.15\\\",\\\"pluginInput\\\":{\\\"iFastProjectName\\\":\\\"WorkFromHome\\\",\\\"iFastURL\\\":\\\"http://10.122.125.105:7475/iFast_NewWeb_Infosys/\\\",\\\"iFastUsername\\\":\\\"Nanmathy\\\"}}\"]}],\"_id\":\"\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "https://10.82.153.15/portfoliosvc/portfolios/{{portfolio_name}}/applications/{{application_name}}/pipelines/{{pipeline_name}}/create",
+							"protocol": "https",
+							"host": [
+								"10",
+								"82",
+								"153",
+								"15"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios",
+								"{{portfolio_name}}",
+								"applications",
+								"{{application_name}}",
+								"pipelines",
+								"{{pipeline_name}}",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PipelineCreationInvalidValueInput",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "375a1269-a358-48c1-9e75-c09e06d2c1c7",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Invalid Value\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"applicationName\":\"{{application_name}}\",\"name\":\"####$$$%%%^^&&***))((__+{}?><\",\"pipelineFlowType\":\"\",\"stages\":[{\"name\":\"SCM\",\"steps\":[\"{\\\"name\\\":\\\"Code Checkout\\\",\\\"pluginName\\\":\\\"gitscm_0.0.19\\\",\\\"pluginInput\\\":{\\\"branch\\\":\\\"master\\\",\\\"browser\\\":\\\"Chrome\\\",\\\"browserUrl\\\":null,\\\"gitUrl\\\":\\\"https://infygithub.ad.infosys.com/idp-sample-apps-for-verification/angular-shopping-cart.git\\\",\\\"password\\\":\\\"Infy1234+\\\",\\\"unsetProxy\\\":true,\\\"username\\\":\\\"ciplatform\\\"}}\"]},{\"name\":\"BUILD\",\"steps\":[\"{\\\"name\\\":\\\"Build Code\\\",\\\"pluginName\\\":\\\"angular_build_0.0.2\\\",\\\"pluginInput\\\":{\\\"compileArguments\\\":\\\"ng build\\\",\\\"npmArguments\\\":\\\"install --unsafe-perm\\\",\\\"proxyPassword\\\":\\\"${SECRET:K0:5kWS0p0L0nNKafGCAkrKRKR61RyyfNiOY94UKTE7WInoto+ytD9i/M7gYRLUX5Iz}\\\",\\\"proxyUrl\\\":\\\"\\\",\\\"proxyUsername\\\":\\\"\\\",\\\"workingDirectory\\\":\\\"angular-shopping-cart\\\"}}\",\"{\\\"name\\\":\\\"Code Analysis\\\",\\\"pluginName\\\":\\\"angular_codeanalysis_tslint_0.0.2\\\",\\\"pluginInput\\\":{\\\"arguments\\\":null,\\\"workingDirectory\\\":\\\"angular-shopping-cart\\\"}}\",\"{\\\"name\\\":\\\"Unit Testing\\\",\\\"pluginName\\\":\\\"angular_unittest_karma-jasmine_codecoverage_0.0.2\\\",\\\"pluginInput\\\":{\\\"projectName\\\":\\\"angular-shopping-cart\\\",\\\"workingDirectory\\\":\\\"angular-shopping-cart\\\"}}\",\"{\\\"name\\\":\\\"Docker Upload\\\",\\\"pluginName\\\":\\\"docker_build_0.0.5\\\",\\\"pluginInput\\\":{\\\"dockerFilePath\\\":\\\"angular-shopping-cart/Dockerfile\\\",\\\"dockerPassword\\\":\\\"${SECRET:K0:isnxJV6NaDnNN3wp3kM73A}\\\",\\\"dockerRegistryUrl\\\":\\\"https://infydtr.ad.infosys.com\\\",\\\"dockerRepo\\\":\\\"ciplatform/idp-docker\\\",\\\"dockerUsername\\\":\\\"ciplatform\\\",\\\"tagName\\\":\\\"CXO-2.0\\\"}}\"]},{\"name\":\"Approval\",\"steps\":[\"{\\\"name\\\":\\\"Approval\\\",\\\"pluginName\\\":\\\"approval_0.0.1\\\",\\\"pluginInput\\\":{\\\"emailId\\\":[\\\"KrishnaKanth_BN@infosys.com\\\",\\\"manohar.vijayakumar@infosys.com\\\",\\\"namrata_ramnani@infosys.com\\\",null,null]}}\"]},{\"name\":\"Deploy\",\"steps\":[\"{\\\"name\\\":\\\"Deploy\\\",\\\"pluginName\\\":\\\"docker_deploy_0.0.4\\\",\\\"pluginInput\\\":{\\\"dockerFilePath\\\":\\\"angular-shopping-cart/docker-compose.yml\\\",\\\"dockerPassword\\\":\\\"${SECRET:K0:isnxJV6NaDnNN3wp3kM73A}\\\",\\\"dockerRegistryUrl\\\":\\\"infydtr.ad.infosys.com\\\",\\\"dockerRepo\\\":\\\"ciplatform/idp-docker\\\",\\\"dockerUsername\\\":\\\"ciplatform\\\",\\\"stackName\\\":\\\"cxostack\\\",\\\"tagName\\\":\\\"CXO-2.0\\\"}}\"]},{\"name\":\"Test\",\"steps\":[\"{\\\"name\\\":\\\"iFast\\\",\\\"pluginName\\\":\\\"iFast_0.0.15\\\",\\\"pluginInput\\\":{\\\"iFastProjectName\\\":\\\"WorkFromHome\\\",\\\"iFastURL\\\":\\\"http://10.122.125.105:7475/iFast_NewWeb_Infosys/\\\",\\\"iFastUsername\\\":\\\"Nanmathy\\\"}}\"]}],\"_id\":\"\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/portfolios/{{portfolio_name}}/applications/{{application_name}}/pipelines/{{pipeline_name}}/create",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios",
+								"{{portfolio_name}}",
+								"applications",
+								"{{application_name}}",
+								"pipelines",
+								"{{pipeline_name}}",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PipelineCreationBlankValueInput",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5652a8a0-fd86-45d4-9084-c6c898d48ce9",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Invalid application name\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"applicationName\":\"{{application_name}}\",\"name\":\"\",\"pipelineFlowType\":\"\",\"stages\":[{\"name\":\"SCM\",\"steps\":[\"{\\\"name\\\":\\\"Code Checkout\\\",\\\"pluginName\\\":\\\"gitscm_0.0.19\\\",\\\"pluginInput\\\":{\\\"branch\\\":\\\"master\\\",\\\"browser\\\":\\\"Chrome\\\",\\\"browserUrl\\\":null,\\\"gitUrl\\\":\\\"https://infygithub.ad.infosys.com/idp-sample-apps-for-verification/angular-shopping-cart.git\\\",\\\"password\\\":\\\"Infy1234+\\\",\\\"unsetProxy\\\":true,\\\"username\\\":\\\"ciplatform\\\"}}\"]},{\"name\":\"BUILD\",\"steps\":[\"{\\\"name\\\":\\\"Build Code\\\",\\\"pluginName\\\":\\\"angular_build_0.0.2\\\",\\\"pluginInput\\\":{\\\"compileArguments\\\":\\\"ng build\\\",\\\"npmArguments\\\":\\\"install --unsafe-perm\\\",\\\"proxyPassword\\\":\\\"${SECRET:K0:5kWS0p0L0nNKafGCAkrKRKR61RyyfNiOY94UKTE7WInoto+ytD9i/M7gYRLUX5Iz}\\\",\\\"proxyUrl\\\":\\\"\\\",\\\"proxyUsername\\\":\\\"\\\",\\\"workingDirectory\\\":\\\"angular-shopping-cart\\\"}}\",\"{\\\"name\\\":\\\"Code Analysis\\\",\\\"pluginName\\\":\\\"angular_codeanalysis_tslint_0.0.2\\\",\\\"pluginInput\\\":{\\\"arguments\\\":null,\\\"workingDirectory\\\":\\\"angular-shopping-cart\\\"}}\",\"{\\\"name\\\":\\\"Unit Testing\\\",\\\"pluginName\\\":\\\"angular_unittest_karma-jasmine_codecoverage_0.0.2\\\",\\\"pluginInput\\\":{\\\"projectName\\\":\\\"angular-shopping-cart\\\",\\\"workingDirectory\\\":\\\"angular-shopping-cart\\\"}}\",\"{\\\"name\\\":\\\"Docker Upload\\\",\\\"pluginName\\\":\\\"docker_build_0.0.5\\\",\\\"pluginInput\\\":{\\\"dockerFilePath\\\":\\\"angular-shopping-cart/Dockerfile\\\",\\\"dockerPassword\\\":\\\"${SECRET:K0:isnxJV6NaDnNN3wp3kM73A}\\\",\\\"dockerRegistryUrl\\\":\\\"https://infydtr.ad.infosys.com\\\",\\\"dockerRepo\\\":\\\"ciplatform/idp-docker\\\",\\\"dockerUsername\\\":\\\"ciplatform\\\",\\\"tagName\\\":\\\"CXO-2.0\\\"}}\"]},{\"name\":\"Approval\",\"steps\":[\"{\\\"name\\\":\\\"Approval\\\",\\\"pluginName\\\":\\\"approval_0.0.1\\\",\\\"pluginInput\\\":{\\\"emailId\\\":[\\\"KrishnaKanth_BN@infosys.com\\\",\\\"manohar.vijayakumar@infosys.com\\\",\\\"namrata_ramnani@infosys.com\\\",null,null]}}\"]},{\"name\":\"Deploy\",\"steps\":[\"{\\\"name\\\":\\\"Deploy\\\",\\\"pluginName\\\":\\\"docker_deploy_0.0.4\\\",\\\"pluginInput\\\":{\\\"dockerFilePath\\\":\\\"angular-shopping-cart/docker-compose.yml\\\",\\\"dockerPassword\\\":\\\"${SECRET:K0:isnxJV6NaDnNN3wp3kM73A}\\\",\\\"dockerRegistryUrl\\\":\\\"infydtr.ad.infosys.com\\\",\\\"dockerRepo\\\":\\\"ciplatform/idp-docker\\\",\\\"dockerUsername\\\":\\\"ciplatform\\\",\\\"stackName\\\":\\\"cxostack\\\",\\\"tagName\\\":\\\"CXO-2.0\\\"}}\"]},{\"name\":\"Test\",\"steps\":[\"{\\\"name\\\":\\\"iFast\\\",\\\"pluginName\\\":\\\"iFast_0.0.15\\\",\\\"pluginInput\\\":{\\\"iFastProjectName\\\":\\\"WorkFromHome\\\",\\\"iFastURL\\\":\\\"http://10.122.125.105:7475/iFast_NewWeb_Infosys/\\\",\\\"iFastUsername\\\":\\\"Nanmathy\\\"}}\"]}],\"_id\":\"\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/portfolios/{{portfolio_name}}/applications/{{application_name}}/pipelines/{{pipeline_name}}/create",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios",
+								"{{portfolio_name}}",
+								"applications",
+								"{{application_name}}",
+								"pipelines",
+								"{{pipeline_name}}",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PipelineCreationTextValueInput",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d094221-d0f0-41b7-8f85-1d5d77c08024",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Invalid request payload\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid request\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\"This is Text Input!\"",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/portfolios/{{portfolio_name}}/applications/{{application_name}}/pipelines/{{pipeline_name}}/create",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios",
+								"{{portfolio_name}}",
+								"applications",
+								"{{application_name}}",
+								"pipelines",
+								"{{pipeline_name}}",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PipelineCreationBlankJsonCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b91f7811-8e89-4fe5-a06f-4fd259febcc8",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Invalid request payload\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/portfolios/{{portfolio_name}}/applications/{{application_name}}/pipelines/{{pipeline_name}}/create",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios",
+								"{{portfolio_name}}",
+								"applications",
+								"{{application_name}}",
+								"pipelines",
+								"{{pipeline_name}}",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PipelineListScenarios",
+			"item": [
+				{
+					"name": "PipelineList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "456677fa-9f2c-4d0f-8475-369ff3e316ad",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains pipelineList\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"pipelineList\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{pipelineList{name,applicationName}}\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PipelineListBlankInput",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b5bd3c56-5552-42ba-b357-f2b425826131",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Invalid Request\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PipelineListTextInput",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2ed96825-12cd-431f-9369-731c444e07e6",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "29d96b5b-127f-4adf-8846-2b1cd5b0d114",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Invalid Request\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\"This is API Test!\"",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PipelineListInvalidValueCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "60b49ba3-7fcd-403a-85ee-86419897dcaf",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"not found\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"pipelineList not found\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{pipelineList{,applicationName}}\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "DashboardServiceFetchPipelines",
+			"item": [
+				{
+					"name": "LoadDashboardPipelineDetails",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "81617d5b-6828-4f84-a8cf-e810232beb26",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains pipelines list\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"pipelines\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"query{pipelines(pipeline: {appname:\\\"{{existing_AppName}}\\\"}){pipelines}}\"}\r\n",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LoadDashboardPipelineDetailsBlankValueCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d515dbe4-7215-4769-a093-d65983cc82d2",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains pipelines null\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"null\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"query{pipelines(pipeline: {appname:\\\"\\\"}){pipelines}}\"}\r\n",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "DashboardGetTriggerDetails",
+			"item": [
+				{
+					"name": "DashboardGetTriggerData",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2bb3aa2a-8b9c-40b0-9e09-7aac3f3bd098",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains pipelines list\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"pipelines\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"//   var jsonData = pm.response.json.pipelines();\r",
+									"//   console.log(jsonData)\r",
+									"//   for (var i = 0; i < jsonData.length; i++){\r",
+									"//   var buildId = jsonData.data[i]\r",
+									"//    console.log (\"buildid...........\" + buildId);\r",
+									"//    }\r",
+									"  \r",
+									"\r",
+									" \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"query\":\"query getLatestTriggerData(\\n          $applicationName: String\\n          $pipelineName: String\\n          $size: Int\\n        ) {\\n          pipelines(\\n            pipeline: {\\n              name: $pipelineName\\n              appname: $applicationName\\n              limit: $size\\n              orderby: CREATEDAT_DESC\\n            }\\n          ) {\\n            status\\n            buildid\\n            triggeredby\\n          }\\n        }\",\"variables\":{\"applicationName\":\"RaviApp\",\"pipelineName\":\"TestApproval\",\"size\":5}}]",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DashboardGetTriggerData_InvalidApplicationValue",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f24de9b9-9572-4066-8d5d-8e4ef14b385e",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains pipelines list\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"pipelines\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"query\":\"query getLatestTriggerData(\\n          $applicationName: String\\n          $pipelineName: String\\n          $size: Int\\n        ) {\\n          pipelines(\\n            pipeline: {\\n              name: $pipelineName\\n              appname: $applicationName\\n              limit: $size\\n              orderby: CREATEDAT_DESC\\n            }\\n          ) {\\n            status\\n            buildid\\n            triggeredby\\n          }\\n        }\",\"variables\":{\"applicationName\":\"%%**(())-=-\",\"pipelineName\":\"{{existing_PipeName}}\",\"size\":5}},{\"query\":\"query getLatestTriggerData(\\n          $applicationName: String\\n          $pipelineName: String\\n          $size: Int\\n        ) {\\n          pipelines(\\n            pipeline: {\\n              name: $pipelineName\\n              appname: $applicationName\\n              limit: $size\\n              orderby: CREATEDAT_DESC\\n            }\\n          ) {\\n            status\\n            buildid\\n            triggeredby\\n          }\\n        }\",\"variables\":{\"applicationName\":\"BUILD\",\"pipelineName\":\"build1_COPY\",\"size\":5}}]",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DashboardGetTriggerData_InvalidPipelineValue",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9ad893fc-bd71-49a1-ad7f-612311a48c76",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains pipelines list\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"pipelines\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"query\":\"query getLatestTriggerData(\\n          $applicationName: String\\n          $pipelineName: String\\n          $size: Int\\n        ) {\\n          pipelines(\\n            pipeline: {\\n              name: $pipelineName\\n              appname: $applicationName\\n              limit: $size\\n              orderby: CREATEDAT_DESC\\n            }\\n          ) {\\n            status\\n            buildid\\n            triggeredby\\n          }\\n        }\",\"variables\":{\"applicationName\":\"{{existing_AppName}}\",\"pipelineName\":\"####((*&^%$)(*khj\",\"size\":5}},{\"query\":\"query getLatestTriggerData(\\n          $applicationName: String\\n          $pipelineName: String\\n          $size: Int\\n        ) {\\n          pipelines(\\n            pipeline: {\\n              name: $pipelineName\\n              appname: $applicationName\\n              limit: $size\\n              orderby: CREATEDAT_DESC\\n            }\\n          ) {\\n            status\\n            buildid\\n            triggeredby\\n          }\\n        }\",\"variables\":{\"applicationName\":\"BUILD\",\"pipelineName\":\"build1_COPY\",\"size\":5}}]",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DashboardGetTriggerData_InvalidAppPipeValue",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "549d48a1-ae41-42a4-a5c2-253d5ab19d23",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains pipelines list\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"pipelines\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"query\":\"query getLatestTriggerData(\\n          $applicationName: String\\n          $pipelineName: String\\n          $size: Int\\n        ) {\\n          pipelines(\\n            pipeline: {\\n              name: $pipelineName\\n              appname: $applicationName\\n              limit: $size\\n              orderby: CREATEDAT_DESC\\n            }\\n          ) {\\n            status\\n            buildid\\n            triggeredby\\n          }\\n        }\",\"variables\":{\"applicationName\":\"!@#$%6thy7\",\"pipelineName\":\"####((*&^%$)(*khj\",\"size\":5}},{\"query\":\"query getLatestTriggerData(\\n          $applicationName: String\\n          $pipelineName: String\\n          $size: Int\\n        ) {\\n          pipelines(\\n            pipeline: {\\n              name: $pipelineName\\n              appname: $applicationName\\n              limit: $size\\n              orderby: CREATEDAT_DESC\\n            }\\n          ) {\\n            status\\n            buildid\\n            triggeredby\\n          }\\n        }\",\"variables\":{\"applicationName\":\"BUILD\",\"pipelineName\":\"build1_COPY\",\"size\":5}}]",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DashboardGetTriggerDataBlankValue",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6b2776b3-7770-4931-8ff8-44f47fe07602",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains pipelines list\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"pipelines\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"query\":\"query getLatestTriggerData(\\n          $applicationName: String\\n          $pipelineName: String\\n          $size: Int\\n        ) {\\n          pipelines(\\n            pipeline: {\\n              name: $pipelineName\\n              appname: $applicationName\\n              limit: $size\\n              orderby: CREATEDAT_DESC\\n            }\\n          ) {\\n            status\\n            buildid\\n            triggeredby\\n          }\\n        }\",\"variables\":{\"applicationName\":\"\",\"pipelineName\":\"\",\"size\":5}},{\"query\":\"query getLatestTriggerData(\\n          $applicationName: String\\n          $pipelineName: String\\n          $size: Int\\n        ) {\\n          pipelines(\\n            pipeline: {\\n              name: $pipelineName\\n              appname: $applicationName\\n              limit: $size\\n              orderby: CREATEDAT_DESC\\n            }\\n          ) {\\n            status\\n            buildid\\n            triggeredby\\n          }\\n        }\",\"variables\":{\"applicationName\":\"BUILD\",\"pipelineName\":\"build1_COPY\",\"size\":5}}]",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DashboardGetTriggerDataBlankJSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3ba3b398-5a92-4724-a251-5c62c671b60d",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains pipelines list\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"pipelines\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"query\":\"query getLatestTriggerData(\\n          $applicationName: String\\n          $pipelineName: String\\n          $size: Int\\n        ) {\\n          pipelines(\\n            pipeline: {\\n              name: $pipelineName\\n              appname: $applicationName\\n              limit: $size\\n              orderby: CREATEDAT_DESC\\n            }\\n          ) {\\n            status\\n            buildid\\n            triggeredby\\n          }\\n        }\",\"variables\":{\"applicationName\":\"{{existing_AppName}}\",\"pipelineName\":\"{{existing_PipeName}}\",\"size\":5}},{\"query\":\"query getLatestTriggerData(\\n          $applicationName: String\\n          $pipelineName: String\\n          $size: Int\\n        ) {\\n          pipelines(\\n            pipeline: {\\n              name: $pipelineName\\n              appname: $applicationName\\n              limit: $size\\n              orderby: CREATEDAT_DESC\\n            }\\n          ) {\\n            status\\n            buildid\\n            triggeredby\\n          }\\n        }\",\"variables\":{\"applicationName\":\"BUILD\",\"pipelineName\":\"build1_COPY\",\"size\":5}}]",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DashboardGetTriggerDataTextInput",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "37b1eb80-d025-454b-9604-ffc0c369d761",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains pipelines list\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"pipelines\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"query\":\"query getLatestTriggerData(\\n          $applicationName: String\\n          $pipelineName: String\\n          $size: Int\\n        ) {\\n          pipelines(\\n            pipeline: {\\n              name: $pipelineName\\n              appname: $applicationName\\n              limit: $size\\n              orderby: CREATEDAT_DESC\\n            }\\n          ) {\\n            status\\n            buildid\\n            triggeredby\\n          }\\n        }\",\"variables\":{\"applicationName\":\"{{existing_AppName}}\",\"pipelineName\":\"{{existing_PipeName}}\",\"size\":5}},{\"query\":\"query getLatestTriggerData(\\n          $applicationName: String\\n          $pipelineName: String\\n          $size: Int\\n        ) {\\n          pipelines(\\n            pipeline: {\\n              name: $pipelineName\\n              appname: $applicationName\\n              limit: $size\\n              orderby: CREATEDAT_DESC\\n            }\\n          ) {\\n            status\\n            buildid\\n            triggeredby\\n          }\\n        }\",\"variables\":{\"applicationName\":\"BUILD\",\"pipelineName\":\"build1_COPY\",\"size\":5}}]",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "CodeViewDashboardAPI",
+			"item": [
+				{
+					"name": "CodeDashboardDataLoad",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4ce89d9c-8eff-4f8d-851b-58d8ad58acde",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains changesetDetailsAuthor data\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"changesetDetailsAuthor\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"query\":\"query commitByAuthor($application:String!,$pipeline:String!){changesetDetailsAuthor(report: {pipname:$pipeline,appname:$application}){author count}}\",\"variables\":{\"application\":\"{{existing_AppName}}\",\"pipeline\":\"{{existing_PipeName}}\"}},\r\n  {\"query\":\"query commitHeatmap($application:String!,$pipeline:String!){changesetDetailsHeatmap(report: {pipname:$pipeline,appname:$application}){date count}}\",\"variables\":{\"application\":\"{{existing_AppName}}\",\"pipeline\":\"{{existing_PipeName}}\"}},\r\n {\"query\":\"query commitByDay($application:String!,$pipeline:String!){changesetDetailsPerDay(report: {pipname:$pipeline,appname:$application}){date count}}\",\"variables\":{\"application\":\"{{existing_AppName}}\",\"pipeline\":\"{{existing_PipeName}}\"}}]",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CodeDashboardDataBlankApplication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cce203ff-756f-4f4a-8a49-1dc1cf6f9d50",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Bad Request\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Bad\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"query\":\"query commitByAuthor($application:String!,$pipeline:String!){changesetDetailsAuthor(report: {pipname:$pipeline,appname:$application}){author count}}\",\"variables\":{\"application\":\"\",\"pipeline\":\"selenium_COPY\"}},\r\n  {\"query\":\"query commitHeatmap($application:String!,$pipeline:String!){changesetDetailsHeatmap(report: {pipname:$pipeline,appname:$application}){date count}}\",\"variables\":{\"application\":\"\",\"pipeline\":\"selenium_COPY\"}},\r\n {\"query\":\"query commitByDay($application:String!,$pipeline:String!){changesetDetailsPerDay(report: {pipname:$pipeline,appname:$application}){date count}}\",\"variables\":{\"application\":\"\",\"pipeline\":\"selenium_COPY\"}}]",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CodeDashboardDataLoadBlankJson",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "28b59c14-42bd-4ea6-96bc-3f54eed6fb96",
+								"exec": [
+									"pm.test(\"Status code is 502\", function () {\r",
+									"    pm.response.to.have.status(502);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Bad request\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Bad\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CodeDashboardDataLoadTextInput",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b850a549-0dae-44f1-aded-f722c388e3c0",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Bad request\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\"This is API!\"",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "QualityViewDashboardAPI",
+			"item": [
+				{
+					"name": "QualityViewDashboardDataLoad",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "430c078a-3e7e-4080-98ef-7f129463723c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Quality Report\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"reportname\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"query($applicationName:String!$pipelineName:String!$buildId:String!){\\n          report(report: {\\n            pipname:$pipelineName,appname:$applicationName,buildid:$buildId\\n          }){reportname taskname}\\n        }\",\"variables\":{\"applicationName\":\"{{existing_AppName}}\",\"pipelineName\":\"{{existing_PipeName}}\",\"buildId\":\"Test_testiFASTPlugin_bqnrmggap6nmrnsneaig\"}}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "QualityViewDashboardBlankApplication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e729377f-7a66-45ec-a3eb-7a8adb6f085f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Quality Report\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"reportname\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"query($applicationName:String!$pipelineName:String!$buildId:String!){\\n          report(report: {\\n            pipname:$pipelineName,appname:$applicationName,buildid:$buildId\\n          }){reportname taskname}\\n        }\",\"variables\":{\"applicationName\":\"\",\"pipelineName\":\"testiFASTPlugin\",\"buildId\":\"Test_testiFASTPlugin_bqnrmggap6nmrnsneaig\"}}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "MaturityViewDashboardAPI",
+			"item": [
+				{
+					"name": "MaturityViewDashboardDataLoad",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "69328047-7387-4523-9d5b-54e439cd2c0d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains maturityScore\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"maturityScore\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"query\":\"query maturity($application:String!,$pipeline:String!){maturity(maturity: {applicationName:$application,pipelineName:$pipeline}){applicationName pipelineName logTime mttr mtbf runFrequency numDevDeployment numProdDeployment numTestDeployment successRate mttrTrend mtbfTrend runFrequencyTrend maturityScore}}\",\"variables\":{\"application\":\"{{existing_AppName}}\",\"pipeline\":\"{{existing_PipeName}}\"}}]",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MaturityViewDashboardDataLoadBlankApplication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6bd1d4bf-fe89-44d2-beb4-775057c041bb",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains maturityScore\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"maturityScore\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"query\":\"query maturity($application:String!,$pipeline:String!){maturity(maturity: {applicationName:$application,pipelineName:$pipeline}){applicationName pipelineName logTime mttr mtbf runFrequency numDevDeployment numProdDeployment numTestDeployment successRate mttrTrend mtbfTrend runFrequencyTrend maturityScore}}\",\"variables\":{\"application\":\"\",\"pipeline\":\"{{existing_PipeName}}\"}}]",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "AuditViewDashboardAPI",
+			"item": [
+				{
+					"name": "AuditViewDashboardDataLoad",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "34acda9e-a508-43c0-8415-5587770679f1",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains telemetry data\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"telemetry\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"query\":\"query ($application: String!, $pipeline: String!, $type: String!, $portfolio: String!) {\\n  telemetry(telemetry: {pipelineName: $pipeline, applicationName: $application, type: $type, portfolioname: $portfolio}) {\\n    CI,CD,CT,VSM,SCM,monitoring,secOps }\\n}\",\"variables\":{\"application\":\"{{existing_AppName}}\",\"pipeline\":\"{{existing_PipeName}}\",\"type\":\"devopsCategory\",\"portfolio\":\"\"}},{\"query\":\"query ($application: String!, $pipeline: String!, $type: String!, $portfolio: String!) {\\n  telemetry(telemetry: {pipelineName: $pipeline, applicationName: $application, type: $type, portfolioname: $portfolio}) {\\n    userName,operation,timestamp,jsonDifference,resourceName\\n  }\\n}\",\"variables\":{\"application\":\"{{existing_AppName}}\",\"pipeline\":\"{{existing_PipeName}}\",\"type\":\"userDetails\",\"portfolio\":\"\"}},{\"query\":\"query ($application: String!, $pipeline: String!, $type: String!, $portfolio: String!) {\\n  telemetry(telemetry: {pipelineName: $pipeline, applicationName: $application, type: $type, portfolioname: $portfolio}) {\\n    pluginName,pluginCount\\n  }\\n}\",\"variables\":{\"application\":\"{{existing_AppName}}\",\"pipeline\":\"{{existing_PipeName}}\",\"type\":\"pluginDetails\",\"portfolio\":\"\"}}]",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InvalidUserAuditViewDashboardDataLoad",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5841be77-176b-4357-b6de-f1d96b182a19",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains telemetry data\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"telemetry\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"query\":\"query ($application: String!, $pipeline: String!, $type: String!, $portfolio: String!) {\\n  telemetry(telemetry: {pipelineName: $pipeline, applicationName: $application, type: $type, portfolioname: $portfolio}) {\\n    CI,CD,CT,VSM,SCM,monitoring,secOps }\\n}\",\"variables\":{\"application\":\"{{existing_AppName}}\",\"pipeline\":\"{{existing_PipeName}}\",\"type\":\"devopsCategory\",\"portfolio\":\"\"}},{\"query\":\"query ($application: String!, $pipeline: String!, $type: String!, $portfolio: String!) {\\n  telemetry(telemetry: {pipelineName: $pipeline, applicationName: $application, type: $type, portfolioname: $portfolio}) {\\n    userName,operation,timestamp,jsonDifference,resourceName\\n  }\\n}\",\"variables\":{\"application\":\"{{existing_AppName}}\",\"pipeline\":\"{{existing_PipeName}}\",\"type\":\"userDetails\",\"portfolio\":\"\"}},{\"query\":\"query ($application: String!, $pipeline: String!, $type: String!, $portfolio: String!) {\\n  telemetry(telemetry: {pipelineName: $pipeline, applicationName: $application, type: $type, portfolioname: $portfolio}) {\\n    pluginName,pluginCount\\n  }\\n}\",\"variables\":{\"application\":\"{{existing_AppName}}\",\"pipeline\":\"{{existing_PipeName}}\",\"type\":\"pluginDetails\",\"portfolio\":\"\"}}]",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AuditViewDashboardDataLoadBlankApplicationName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4d08b2b9-de37-4574-93d7-09fe79a17ab1",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains telemetry data\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"telemetry\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"query\":\"query ($application: String!, $pipeline: String!, $type: String!, $portfolio: String!) {\\n  telemetry(telemetry: {pipelineName: $pipeline, applicationName: $application, type: $type, portfolioname: $portfolio}) {\\n    CI,CD,CT,VSM,SCM,monitoring,secOps }\\n}\",\"variables\":{\"application\":\"Test\",\"pipeline\":\"selenium_COPY\",\"type\":\"devopsCategory\",\"portfolio\":\"\"}},{\"query\":\"query ($application: String!, $pipeline: String!, $type: String!, $portfolio: String!) {\\n  telemetry(telemetry: {pipelineName: $pipeline, applicationName: $application, type: $type, portfolioname: $portfolio}) {\\n    userName,operation,timestamp,jsonDifference,resourceName\\n  }\\n}\",\"variables\":{\"application\":\"Test\",\"pipeline\":\"selenium_COPY\",\"type\":\"userDetails\",\"portfolio\":\"\"}},{\"query\":\"query ($application: String!, $pipeline: String!, $type: String!, $portfolio: String!) {\\n  telemetry(telemetry: {pipelineName: $pipeline, applicationName: $application, type: $type, portfolioname: $portfolio}) {\\n    pluginName,pluginCount\\n  }\\n}\",\"variables\":{\"application\":\"Test\",\"pipeline\":\"selenium_COPY\",\"type\":\"pluginDetails\",\"portfolio\":\"\"}}]",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "CreatePolicyScenarios",
+			"item": [
+				{
+					"name": "createPolicy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "61448191-1144-4cde-913b-f3de5ccca121",
+								"exec": [
+									"\r",
+									"var portfolio_name = +pm.environment.get(\"portfolio_name\");\r",
+									"console.log(portfolio_name);\r",
+									"\r",
+									"pm.environment.set(\"portfolio_name\",portfolio_name++ + 1);\r",
+									"console.log(portfolio_name);\r",
+									"\r",
+									"var application_name = +pm.environment.get(\"application_name\");\r",
+									"console.log(application_name);\r",
+									"\r",
+									"pm.environment.set(\"application_name\",application_name++ + 1);\r",
+									"console.log(application_name);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "772cd27a-4063-4afe-aab0-d69f7f0e00b4",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"policy\");",
+									"});",
+									"",
+									"// pm.test(\"Response time is less than 200ms\", function () {",
+									"//     pm.expect(pm.response.responseTime).to.be.below(200);",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"mutation{policy(operation: \\\"create\\\", body: \\\"{\\\\\\\"policyName\\\\\\\":\\\\\\\"Portfolio Owner\\\\\\\",\\\\\\\"level\\\\\\\":\\\\\\\"application\\\\\\\",\\\\\\\"users\\\\\\\":[],\\\\\\\"resource\\\\\\\":\\\\\\\"{{portfolio_name}}\\\\\\\",\\\\\\\"permissions\\\\\\\":[\\\\\\\"EDIT:portfolio:\\\\\\\",\\\\\\\"DELETE:portfolio:\\\\\\\",\\\\\\\"VIEW:portfolio:\\\\\\\",\\\\\\\"EDIT:application:*\\\\\\\",\\\\\\\"CREATE:application:*\\\\\\\",\\\\\\\"DELETE:application:*\\\\\\\"]}\\\"){users}}\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPolicynullValue",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "adc4c57f-b3c6-42eb-a2bf-82b07f263dba",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");",
+									"});",
+									"",
+									"// pm.test(\"Response time is less than 200ms\", function () {",
+									"//     pm.expect(pm.response.responseTime).to.be.below(200);",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"mutation{policy(operation: \\\"create\\\", body: \\\"{\\\\\\\"policyName\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"level\\\\\\\":\\\\\\\"portfolio\\\\\\\",\\\\\\\"users\\\\\\\":[],\\\\\\\"resource\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"permissions\\\\\\\":[\\\\\\\"EDIT:portfolio:\\\\\\\",\\\\\\\"DELETE:portfolio:\\\\\\\",\\\\\\\"VIEW:portfolio:\\\\\\\",\\\\\\\"EDIT:application:*\\\\\\\",\\\\\\\"CREATE:application:*\\\\\\\",\\\\\\\"DELETE:application:*\\\\\\\"]}\\\"){users}}\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/portfolios",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPolicyInvalidValue",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b98d18d6-dd6e-485c-938e-4822cb384b8f",
+								"exec": [
+									"pm.test(\"Status code should be 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");",
+									"});",
+									"",
+									"// pm.test(\"Response time is less than 200ms\", function () {",
+									"//     pm.expect(pm.response.responseTime).to.be.below(200);",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{jwttoken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"mutation{policy(operation: \\\"create\\\", body: \\\"{\\\\\\\"policyName\\\\\\\":\\\\\\\"##55^^^&*())%%%%HJK\\\\\\\",\\\\\\\"level\\\\\\\":\\\\\\\"portfolio\\\\\\\",\\\\\\\"users\\\\\\\":[],\\\\\\\"resource\\\\\\\":\\\\\\\"{{portfolio_name}}\\\\\\\",\\\\\\\"permissions\\\\\\\":[\\\\\\\"EDIT:portfolio:\\\\\\\",\\\\\\\"DELETE:portfolio:\\\\\\\",\\\\\\\"VIEW:portfolio:\\\\\\\",\\\\\\\"EDIT:application:*\\\\\\\",\\\\\\\"CREATE:application:*\\\\\\\",\\\\\\\"DELETE:application:*\\\\\\\"]}\\\"){users}}\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/portfolios",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"portfolios"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "GetLogViewDashboardAPI",
+			"item": [
+				{
+					"name": "GetLogViewDashboardDataLoad",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ca8fd6ca-8e54-41c8-ac9b-3013857cb63a",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Response Body contains pipelines list\", function () {\r",
+									"//     pm.expect(pm.response.text()).to.include(\"pipelines\");\r",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"query ($application: String!, $pipeline: String!, $type: String!, $portfolio: String!) {\\n  telemetry(telemetry: {pipelineName: $pipeline, applicationName: $application, type: $type, portfolioname: $portfolio}) {\\n    CI,CD,CT,VSM,SCM,monitoring,secOps }\\n}\",\"variables\":{\"application\":\"{{existing_AppName}}\",\"pipeline\":\"{{existing_PipeName}}\",\"type\":\"devopsCategory\",\"portfolio\":\"{{existing_PortName}}\"}}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TracebilityViewDashboardAPI",
+			"item": [
+				{
+					"name": "TracebilityViewDashboardDataLoad",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "33166fb0-8f32-4a30-91e7-47d736752fce",
+								"exec": [
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405);\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Response Body contains traceability\", function () {\r",
+									"//     pm.expect(pm.response.text()).to.include(\"traceability\");\r",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"query\":\"query($application: String!, $pipeline: String!){\\n  traceability(report: {pipname: $pipeline, appname: $application}){\\n    envSelected \\n    branch \\n    author \\n    commitid  \\n    message \\n    files \\n    time\\n  }\\n}\",\"variables\":{\"application\":{{existing_AppName}}\",\"pipeline\":\"{{existing_PipeName}}\"}}]",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}//dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"",
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TracebilityViewDashboardBlankApplicationName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "24dbcfde-49a9-48dd-8b08-71af575e37cb",
+								"exec": [
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405);\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Response Body contains traceability\", function () {\r",
+									"//     pm.expect(pm.response.text()).to.include(\"traceability\");\r",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"query\":\"query($application: String!, $pipeline: String!){\\n  traceability(report: {pipname: $pipeline, appname: $application}){\\n    envSelected \\n    branch \\n    author \\n    commitid  \\n    message \\n    files \\n    time\\n  }\\n}\",\"variables\":{\"application\":\"\",\"pipeline\":\"{{existing_PipeName}}\"}}]",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}//dashboard/v1/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"",
+								"dashboard",
+								"v1",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "UpdateVariable",
+			"item": [
+				{
+					"name": "UpdateVariableCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b73de866-de0c-4166-9dca-6b71a4d5acc0",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Variable Updated\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"data\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "58e16382-3b2e-41cf-abcc-833a0f063945",
+								"exec": [
+									"var Var_nameUp = +pm.environment.get(\"Var_nameUp\");\r",
+									"\r",
+									"pm.environment.set(\"Var_nameUp\",Var_nameUp-- - 1);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"\\n         mutation{\\n           application(operationOnField:\\\"update\\\",\\n                    fieldToUpdate:\\\"variables\\\",\\n                    applicationName:\\\"{{existing_AppName}}\\\",\\n                    body:\\\"{\\\\\\\"envForVariable\\\\\\\":[],\\\\\\\"default\\\\\\\":\\\\\\\"10.82.128.30\\\\\\\",\\\\\\\"name\\\\\\\":\\\\\\\"{{Var_nameUp}}\\\\\\\",\\\\\\\"secret\\\\\\\":false,\\\\\\\"canEdit\\\\\\\":true,\\\\\\\"canDelete\\\\\\\":true}\\\"){\\n                    portfolioName\\n           }\\n         }\\n      \"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateVariableBlankValueCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "df4e6d07-7f8b-4c3d-87a5-affc1af3fd46",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains traceability\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"data\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3fced88c-9e5d-4baf-be1b-7989ed3649b1",
+								"exec": [
+									"var Var_nameUp = +pm.environment.get(\"Var_nameUp\");\r",
+									"\r",
+									"pm.environment.set(\"Var_nameUp\",Var_nameUp-- - 1);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"\\n         mutation{\\n           application(operationOnField:\\\"create\\\",\\n                    fieldToUpdate:\\\"variables\\\",\\n                    applicationName:\\\"{{existing_AppName}}\\\",\\n                    body:\\\"{\\\\\\\"envForVariable\\\\\\\":[],\\\\\\\"name\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"default\\\\\\\":\\\\\\\"10.82.128.38\\\\\\\"}\\\"){\\n                    portfolioName\\n           }\\n         }\\n      \"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "DeleteVariable",
+			"item": [
+				{
+					"name": "DeleteVariableCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6f433919-9e22-4c64-8097-2504330d0779",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Variable Updated\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"data\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b1c13f36-3cfd-4721-8e5a-fb0fde9f37a9",
+								"exec": [
+									"var Var_nameUp = +pm.environment.get(\"Var_nameUp\");\r",
+									"\r",
+									"pm.environment.set(\"Var_nameUp\",Var_nameUp-- - 1);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"\\n         mutation{\\n           application(operationOnField:\\\"delete\\\",\\n                    fieldToUpdate:\\\"variables\\\",\\n                    applicationName:\\\"{{application_name}}\\\",\\n                    body:\\\"{\\\\\\\"default\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"envForVariable\\\\\\\":[],\\\\\\\"name\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"secret\\\\\\\":false,\\\\\\\"canEdit\\\\\\\":true,\\\\\\\"canDelete\\\\\\\":true}\\\"){\\n                    portfolioName\\n           }\\n         }\\n      \"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "UpdateRelease",
+			"item": [
+				{
+					"name": "UpdateReleaseDuplicateCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3304da8b-a2fd-41a4-9912-b6c78306cfc1",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Variable already exist\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"already\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"\\n        mutation{\\n          application(operationOnField:\\\"update\\\",fieldToUpdate:\\\"releases\\\",applicationName:\\\"{{existing_AppName}}\\\",body:\\\"{\\\\\\\"envNames\\\\\\\":[\\\\\\\"QA\\\\\\\",\\\\\\\"QA\\\\\\\"],\\\\\\\"relNo\\\\\\\":\\\\\\\"1.2.3_test\\\\\\\",\\\\\\\"canEdit\\\\\\\":true,\\\\\\\"canDelete\\\\\\\":true}\\\"){\\n            name\\n          }\\n        }\\n      \"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateReleaseValidation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f2409e8d-80e2-4bd4-8397-c737cde9dbf3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains application name\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"data\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ac7467fd-856f-49f8-9a68-d3ce4c62538d",
+								"exec": [
+									"var Rel_nameUp = +pm.environment.get(\"Rel_nameUp\");\r",
+									"\r",
+									"pm.environment.set(\"Rel_nameUp\",Rel_nameUp-- - 1);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"\\n        mutation{\\n          application(operationOnField:\\\"update\\\",fieldToUpdate:\\\"releases\\\",applicationName:\\\"{{application_name}}\\\",body:\\\"{\\\\\\\"envNames\\\\\\\":[\\\\\\\"QA\\\\\\\",\\\\\\\"QA\\\\\\\"],\\\\\\\"relNo\\\\\\\":\\\\\\\"{{Rel_nameUp}}\\\\\\\",\\\\\\\"canEdit\\\\\\\":true,\\\\\\\"canDelete\\\\\\\":true}\\\"){\\n            name\\n          }\\n        }\\n      \"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateReleaseBlankValidation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "17decf1b-52c2-471a-8b94-008bcc327841",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains not allowed\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4dca4753-a16b-487d-88fd-f00c5ffd32e8",
+								"exec": [
+									"var Var_name = +pm.environment.get(\"Var_name\");\r",
+									"\r",
+									"pm.environment.set(\"Var_name1\",Var_name++ + 1);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"\\n        mutation{\\n          application(operationOnField:\\\"update\\\",fieldToUpdate:\\\"releases\\\",applicationName:\\\"{{existing_AppName}}\\\",body:\\\"{\\\\\\\"envNames\\\\\\\":[\\\\\\\"QA\\\\\\\",\\\\\\\"QA\\\\\\\"],\\\\\\\"relNo\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"canEdit\\\\\\\":true,\\\\\\\"canDelete\\\\\\\":true}\\\"){\\n            name\\n          }\\n        }\\n      \"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "UpdateEnvironment",
+			"item": [
+				{
+					"name": "UpdateEnvironmentCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa8e433d-0a86-4057-b629-50fb7dbd34da",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Variable Updated\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"data\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7f3a5c9d-cc8c-4116-971a-60849ad68c46",
+								"exec": [
+									"var Var_nameUp = +pm.environment.get(\"Var_nameUp\");\r",
+									"\r",
+									"pm.environment.set(\"Var_nameUp\",Var_nameUp-- - 1);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"\\n         mutation{\\n           application(operationOnField:\\\"delete\\\",\\n                    fieldToUpdate:\\\"variables\\\",\\n                    applicationName:\\\"{{application_name}}\\\",\\n                    body:\\\"{\\\\\\\"default\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"envForVariable\\\\\\\":[],\\\\\\\"name\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"secret\\\\\\\":false,\\\\\\\"canEdit\\\\\\\":true,\\\\\\\"canDelete\\\\\\\":true}\\\"){\\n                    portfolioName\\n           }\\n         }\\n      \"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TriggerPipeline",
+			"item": [
+				{
+					"name": "TriggerPipelineCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "470eca98-796c-4633-a8a4-094459bf9771",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Triggerred Successfully\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"SUCCESS\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"workflowName\":\"{{trigger_workflow}}\",\"applicationName\":\"{{existing_AppName}}\",\"pipelineName\":\"{{existing_PipeName}}\",\"agent\":\"{{trigger_worker}}\",\"releaseNumber\":\"{{trigger_release}}\",\"userName\":\"Namrata_Ramnani@infosys.com\",\"environments\":[{\"key\":\"release\",\"value\":\"{{trigger_release}}\",\"secret\":false},{\"key\":\"env\",\"value\":\"QA\",\"secret\":false},{\"key\":\"agent\",\"value\":\"testAutomationApp_testAutoSlave\",\"secret\":false}],\"stages\":[{\"environments\":[{\"key\":\"envSelected\",\"secure\":false,\"value\":\"QA\"},{\"key\":\"envLevel\",\"secure\":false,\"value\":\"3\"}],\"name\":\"iTAFPlugin\"}]}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/pipeline/trigger",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"pipeline",
+								"trigger"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InvalidTokenTriggerPipelineCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "33349405-d6ca-4583-aa79-caf5431545ae",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Triggerred Successfully\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"SUCCESS\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"workflowName\":\"{{trigger_workflow}}\",\"applicationName\":\"{{existing_AppName}}\",\"pipelineName\":\"{{existing_PipeName}}\",\"agent\":\"{{trigger_worker}}\",\"releaseNumber\":\"{{trigger_release}}\",\"userName\":\"Namrata_Ramnani@infosys.com\",\"environments\":[{\"key\":\"release\",\"value\":\"{{trigger_release}}\",\"secret\":false},{\"key\":\"env\",\"value\":\"QA\",\"secret\":false},{\"key\":\"agent\",\"value\":\"testAutomationApp_testAutoSlave\",\"secret\":false}],\"stages\":[{\"environments\":[{\"key\":\"envSelected\",\"secure\":false,\"value\":\"QA\"},{\"key\":\"envLevel\",\"secure\":false,\"value\":\"3\"}],\"name\":\"iTAFPlugin\"}]}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/pipeline/trigger",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"pipeline",
+								"trigger"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TriggerBlankPipelineValidation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "49b1b7bd-4a92-46d6-86fe-307481e5e611",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains not allowed\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "035b6c69-83a6-41d3-bd39-6061b8a10802",
+								"exec": [
+									"var Var_name = +pm.environment.get(\"Var_name\");\r",
+									"\r",
+									"pm.environment.set(\"Var_name1\",Var_name++ + 1);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"workflowName\":\"{{trigger_workflow}}\",\"applicationName\":\"testAutomationApp\",\"pipelineName\":\"\",\"agent\":\"testAutomationApp_testAutoSlave\",\"releaseNumber\":\"1.2.3_test\",\"userName\":\"Namrata_Ramnani@infosys.com\",\"environments\":[{\"key\":\"release\",\"value\":\"1.2.3_test\",\"secret\":false},{\"key\":\"env\",\"value\":\"QA\",\"secret\":false},{\"key\":\"agent\",\"value\":\"testAutomationApp_testAutoSlave\",\"secret\":false}],\"stages\":[{\"environments\":[{\"key\":\"envSelected\",\"secure\":false,\"value\":\"QA\"},{\"key\":\"envLevel\",\"secure\":false,\"value\":\"3\"}],\"name\":\"iTAFPlugin\"}]}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/pipeline/trigger",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"pipeline",
+								"trigger"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TriggerPipelineBlankJSONInput",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e5ef2299-6d73-4185-a57d-bb3f2f20ffde",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains not allowed\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "fe4a163e-b876-4519-ab09-9563d9994e01",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/pipeline/trigger",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"pipeline",
+								"trigger"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TriggerPipelineTextInput",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1f413a19-bce8-4e6b-a292-8e23aadebaaf",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains not allowed\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8282f41e-91b2-4daa-beea-a538b54bc0f4",
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\"This is API\"",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/pipeline/trigger",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"pipeline",
+								"trigger"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PolicyCreate",
+			"item": [
+				{
+					"name": "PolicyDuplicateInputCheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c9c7ce0d-da0c-4070-89f5-3118ff2001f5",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Duplicate\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"duplicate\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"mutation{policy(operation: \\\"create\\\", body: \\\"{\\\\\\\"policyName\\\\\\\":\\\\\\\"QA Owner\\\\\\\",\\\\\\\"level\\\\\\\":\\\\\\\"application\\\\\\\",\\\\\\\"users\\\\\\\":[\\\\\\\"namrata_ramnani@infosys.com\\\\\\\"],\\\\\\\"resource\\\\\\\":\\\\\\\"{{existing_AppName}}\\\\\\\",\\\\\\\"permissions\\\\\\\":[\\\\\\\"EDIT:env:QA\\\\\\\",\\\\\\\"DELETE:env:QA\\\\\\\"]}\\\"){users}}\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PolicyBlankCreateValidation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "42dd48c4-4e37-40ff-8d3c-137d24784917",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains not allowed\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d260935b-27ca-4e0b-aa73-7142e5edcaf4",
+								"exec": [
+									"var Var_name = +pm.environment.get(\"Var_name\");\r",
+									"\r",
+									"pm.environment.set(\"Var_name1\",Var_name++ + 1);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"mutation{policy(operation: \\\"create\\\", body: \\\"{\\\\\\\"policyName\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"level\\\\\\\":\\\\\\\"application\\\\\\\",\\\\\\\"users\\\\\\\":[\\\\\\\"namrata_ramnani@infosys.com\\\\\\\"],\\\\\\\"resource\\\\\\\":\\\\\\\"{{existing_AppName}}\\\\\\\",\\\\\\\"permissions\\\\\\\":[\\\\\\\"EDIT:env:QA\\\\\\\",\\\\\\\"DELETE:env:QA\\\\\\\"]}\\\"){users}}\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PolicyCreateValidation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "df97d80c-a586-4326-aff3-83ec5e2520a0",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body contains Policy\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"policy\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f8b1bf86-45e3-4c83-b072-961dfb9a627f",
+								"exec": [
+									"var Pol_name = +pm.environment.get(\"Pol_name\");\r",
+									"\r",
+									"pm.environment.set(\"Pol_name\",Pol_name++ + 1);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{jwttoken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"mutation{policy(operation: \\\"create\\\", body: \\\"{\\\\\\\"policyName\\\\\\\":\\\\\\\"{{Pol_name}}\\\\\\\",\\\\\\\"level\\\\\\\":\\\\\\\"application\\\\\\\",\\\\\\\"users\\\\\\\":[\\\\\\\"namrata_ramnani@infosys.com\\\\\\\"],\\\\\\\"resource\\\\\\\":\\\\\\\"{{application_name}}\\\\\\\",\\\\\\\"permissions\\\\\\\":[\\\\\\\"EDIT:env:QA\\\\\\\",\\\\\\\"DELETE:env:QA\\\\\\\"]}\\\"){users}}\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{qa_url}}/portfoliosvc/graphql",
+							"host": [
+								"{{qa_url}}"
+							],
+							"path": [
+								"portfoliosvc",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

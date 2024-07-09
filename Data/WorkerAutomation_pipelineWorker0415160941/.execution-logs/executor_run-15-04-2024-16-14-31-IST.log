@@ -1,0 +1,7 @@
+Executor 2024/04/15 16:14:31 Received execution instructions under Application Name : WorkerAutomation
+Executor 2024/04/15 16:14:31 Executing Pipeline : pipelineWorker0415160941
+Executor 2024/04/15 16:14:31 Re-using execution ID
+Executor 2024/04/15 16:14:31 Execution ID : WorkerAutomation-pipelineWorker0415160941-Release1-1
+Executor 2024/04/15 16:14:31 pipelines.go:127: ERROR: Unable to create trigger 'WorkerAutomation-pipelineWorker0415160941-Release1-1' information in reporting server
+Executor 2024/04/15 16:14:31 pipelines.go:128: ERROR:  [non-200 OK status code: 503 Service Unavailable body: "<html>\r\n<head><title>503 Service Temporarily Unavailable</title></head>\r\n<body>\r\n<center><h1>503 Service Temporarily Unavailable</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"]
+Executor 2024/04/15 16:14:31 

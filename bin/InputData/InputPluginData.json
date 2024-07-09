@@ -1,0 +1,181 @@
+{
+"pipelines": [{
+		"applicationName": "Thanu_app",
+		"name": "testPipelinePerf",
+		"pipelineFlowType": "",
+		
+		"stages": [{
+			"name": "SCM",
+			"env":"QA",
+			"worker":"TestIDPGen3_testNimsAgent",
+			"gitscm": [{
+				"name": "gitscm",
+				"pluginName": "gitscm_0.0.21",
+				"pluginInput": {
+					"browser": "Chrome",
+					"browserUrl": "null",
+					"gitUrl": "https://infygit.ad.infosys.com/CIPlatform/JPetStore_Maven.git/",
+					"username": "",
+					"password": "cDJjRAjC-rSKwcXDESFa",
+					"branchPattern": "null",
+					"unsetProxy": "null",
+					"branch": "null"
+						}
+					}],
+			"maven_package": [{
+				"name": "Maven Package",
+				"pluginName": "mavenpackage_0.0.21",
+				"pluginInput": {
+					"pomFile": "\\pom.xml"
+					}
+				}],
+			"Blazemeter": [{
+				"name": "Blazemeter",
+				"pluginName": "Blazemeter_0.0.10",
+				"pluginInput": {
+					"blazemeterApiKey": "",
+					"blazemeterApiSecret": "",
+					"blazemeterProxyIp": "10.68.248.102",
+					"blazemeterProxyPassword": "",
+					"blazemeterProxyPort": "80",
+					"blazemeterProxyUsername": "",
+					"blazemeterTestId": "7991535",
+					"blazemeterTestType": "SINGLE",
+					"blazemeterUrl": "https://a.blazemeter.com"
+					}
+				}],
+		 	"DOCKER_DEPLOY": [{
+				"name": "DOCKER_DEPLOY",
+				"pluginName": "docker_deploy.0.10",
+				"pluginInput": {
+					"dockerFilePath": "C://username",
+					"dockerRegistryUrl": "",
+					"dockerRepo": "",
+					"dockerUsername": "",
+					"dockerPassword": "",
+					"stackName": "MyStack",
+					"tagName": "MyTag"
+				}
+			}],
+			
+			"dotnet_build": [{
+				"name": "Dotnet Build",
+				"pluginName": "dotnet_build",
+				"pluginInput": {
+					"solutionFile": "-restore",
+					"msbuildArguments": "-restore"
+				}
+			}],
+			
+			"angular_build": [{
+				"name": "Angular Build",
+				"pluginName": "angular_build",
+				"pluginInput": {
+					"compileArgument": "npm run build",
+					"npmArgument": "install --unsafe-perm",
+					"workingDirectory": "angular-shopping-cart"
+				}
+			}],
+				
+			"angular_codeanalysis_tslint": [{
+				"name": "angular_codeanalysis_tslint",
+				"pluginName": "angular_codeanalysis_tslint",
+				"pluginInput": {
+					"workingDirectory": "angular-shopping-cart",
+					"arguments": ""
+				}
+			}],
+	
+			"sonar": [{
+				"name": "SonarQube",
+				"pluginName": "sonar",
+				"pluginInput": {
+					"serverUrl": "http://infysonarqube:8080",
+					"userToken": "",
+					"password": "85ddc9ac79c6cf1480e8ea2fccc4b8d048463cde",
+					"propertiesFilePath": "bankapp/sonar-project.properties",
+					"projectKey": "EDUBank"
+				}
+			}],
+			
+			"docker_build": [{
+				"name": "docker_build",
+				"pluginName": "docker_build",
+				"pluginInput": {
+					"dockerFilePath": "deckerregistry/Dockerfile",
+					"dockerPassword": "",
+					"dockerRegistryUrl": "infydtr.ad.infosys.com",
+					"dockerRepo": "",
+					"dockerUsername": "",
+					"tagName": "Demo"					
+				}
+			}],
+			
+			"iFast": [{
+				"name": "iFast",
+				"pluginName": "iFast",
+				"pluginInput": {
+					"iFastProjectName": "WorkFromHome",	
+					"iFastURL": "http://10.122.125.105:7475/iFast_NewWeb_Infosys",
+					"iFastUsername": "Nanmathy"									
+				}
+			}],
+			
+			"Android_lint": [{
+				"name": "Android_lint",
+				"pluginName": "Android_lint",
+				"pluginInput": {
+					"lintFilePath": "android",	
+					"rootBuildScriptPath": "android",
+					"wrapperLocation": "android"									
+				}
+			}],
+			
+			"tomcat":[{
+				"name": "tomcat",
+				"pluginName":"tomcat",
+				"pluginInput":{
+					"contextPath":"ravi",
+					"serverManagerUrl":"http://vquato151:7979",
+					"tomcatPassword":"tomcatadmin",
+					"tomcatUsername":"tomcatadmin",
+					"warPath":"D:/JpetTest-0.0.1-SANPSHOT.war"
+				}
+			}],
+			
+			"Python Build":[{
+				"name": "Python Build",
+				"pluginName": "Python Build",
+				"pluginInput":{
+					"requirementFileDirectory":"Insights",
+					"setupFileDirectory":"Insights",
+					"packageType":"Zip"
+				}
+			}],
+			
+			"jmeter" : [{
+				"name": "jmeter",
+				"pluginName": "jmeter",
+				"pluginInput": {
+					"jmxFile": "idp-modernization-test-data/Plugins/JmeterPluginData/Updated_Dashboard_API.jmx"								
+				}
+			}],
+			
+			"iTAF" : [{
+				"name": "iTAF",
+				"pluginName": "iTAF",
+				"pluginInput": {
+					"iTafUrl": "https://itafappser.ad.infosys.com:8886/",
+					"iTafUsername": "ravichandra.k02",
+					"iTafAgent":"agent-Ravi-120",
+					"iTafProject":"IDP_Regression",
+					"browser":"Chrome",
+					"testSuites":"DummySuite1,DummySuite2"							
+				}
+			}]
+			
+			
+			
+		}]
+	}]
+}

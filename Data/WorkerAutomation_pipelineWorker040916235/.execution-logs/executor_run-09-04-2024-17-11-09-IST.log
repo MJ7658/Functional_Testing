@@ -1,0 +1,17 @@
+Executor 2024/04/09 17:11:09 Received execution instructions under Application Name : WorkerAutomation
+Executor 2024/04/09 17:11:09 Executing Pipeline : pipelineWorker040916235
+Executor 2024/04/09 17:11:09 Re-using execution ID
+Executor 2024/04/09 17:11:09 Execution ID : WorkerAutomation-pipelineWorker040916235-Release1-39
+Executor 2024/04/09 17:11:09 Fetching latest metadata true true
+Executor 2024/04/09 17:11:09 Executing Stage : stage1
+Executor 2024/04/09 17:11:09 Executing Task : cmdexec
+Executor 2024/04/09 17:11:09 Executing path :%v D:\IDP\FunctionalScriptIDP\Data/WorkerAutomation_pipelineWorker040916235
+Executor 2024/04/09 17:11:10 Plugin detected in local
+Executor 2024/04/09 17:11:10 Substituting variables in execution JSON with ENV variables...
+Executor 2024/04/09 17:11:11 Time taken for plugin exec = 839.1957ms
+Executor 2024/04/09 17:11:11 Task 'cmdexec' executed successfully
+Executor 2024/04/09 17:11:11 Task execution time: 1.3212184s
+Executor 2024/04/09 17:11:11 Stage 'stage1' executed successfully
+Executor 2024/04/09 17:11:11 Stage Execution Time: 1.3693317s
+Executor 2024/04/09 17:11:11 Pipeline 'pipelineWorker040916235' executed successfully
+Executor 2024/04/09 17:11:11 Pipeline execution time: 1.7777872s

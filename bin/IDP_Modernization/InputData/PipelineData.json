@@ -1,0 +1,40 @@
+{
+	"pipelineFlowType": "",
+	"applicationName": "Thanu_app",
+	"username": "idpadmin@infosys.com",
+	"pipelines": [{
+		"applicationName": "Thanu_app",
+		"name": "testPipelinePerf",
+		"pipelineFlowType": "",
+		"stages": [{
+			"name": "SCM",
+			"steps": [{
+				"name": "Blazemeter",
+				"pluginName": "Blazemeter_0.0.10",
+				"pluginInput": {
+					"blazemeterApiKey": "680e6475176a4b90809fe582",
+					"blazemeterApiSecret": "fe7ff12db79a86ce5015daf62463fb980a475f56a1b087ca522022f7113f6c663b21c4fa",
+					"blazemeterProxyIp": "10.68.248.102",
+					"blazemeterProxyPassword": "Infy1234+",
+					"blazemeterProxyPort": "80",
+					"blazemeterProxyUsername": "ciplatform",
+					"blazemeterTestId": "7991535",
+					"blazemeterTestType": "SINGLE",
+					"blazemeterUrl": "https://a.blazemeter.com"
+				}
+			}, {
+				"name": "DOCKER_DEPLOY",
+				"pluginName": "docker_deploy.0.10",
+				"pluginInput": {
+					"dockerFilePath": "C://username",
+					"dockerRegistryUrl": "http://deocker_deploy.com",
+					"dockerRepo": "https://infygit.ad.infosys.com/priyanka.garg/seleniumtestautomation_85171.git",
+					"dockerUsername": "docker_username",
+					"dockerPassword": "docker_password",
+					"stackName": "MyStack",
+					"tagName": "MyTag"
+				}
+			}]
+		}]
+	}]
+}

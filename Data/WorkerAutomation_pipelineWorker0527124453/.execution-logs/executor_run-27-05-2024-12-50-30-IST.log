@@ -1,0 +1,18 @@
+Executor 2024/05/27 12:50:30 Received execution instructions under Application Name : WorkerAutomation
+Executor 2024/05/27 12:50:30 Executing Pipeline : pipelineWorker0527124453
+Executor 2024/05/27 12:50:30 Re-using execution ID
+Executor 2024/05/27 12:50:30 Execution ID : WorkerAutomation-pipelineWorker0527124453-Release1-1
+Executor 2024/05/27 12:50:30 Fetching latest metadata false true
+Executor 2024/05/27 12:50:31 Executing Stage : stage1
+Executor 2024/05/27 12:50:31 Executing Task : sleep
+Executor 2024/05/27 12:50:31 Executing path :%v D:\IDP\FunctionalScriptIDP\Data/WorkerAutomation_pipelineWorker0527124453
+Executor 2024/05/27 12:50:32 Fetching https://idp.tools.infosysapps.com/registry/v1/qa/plugin/windows/sleep_0.0.3 plugin from repo 
+Executor 2024/05/27 12:50:34 Plugin saved successfully
+Executor 2024/05/27 12:50:34 Substituting variables in execution JSON with ENV variables...
+Executor 2024/05/27 12:52:16 Time taken for plugin exec = 1m42.4056801s
+Executor 2024/05/27 12:52:16 Task 'sleep' executed successfully
+Executor 2024/05/27 12:52:16 Task execution time: 1m45.131548s
+Executor 2024/05/27 12:52:17 Stage 'stage1' executed successfully
+Executor 2024/05/27 12:52:17 Stage Execution Time: 1m45.4699725s
+Executor 2024/05/27 12:52:17 Pipeline 'pipelineWorker0527124453' executed successfully
+Executor 2024/05/27 12:52:17 Pipeline execution time: 1m46.8578235s

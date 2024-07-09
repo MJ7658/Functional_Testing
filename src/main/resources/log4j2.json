@@ -1,0 +1,27 @@
+{
+  "configuration": {
+    "packages": "com.epam.ta.reportportal.log4j.appender",
+    "properties": {
+      "property": {
+        "name": "pattern",
+        "value": "%d{HH:mm:ss.SSS} [%t] %-5level - %msg%n"
+      }
+    },
+    "appenders": {
+      "ReportPortalLog4j2Appender": {
+        "name": "ReportPortalAppender",
+        "PatternLayout": {
+          "pattern": "${pattern}"
+        }
+      }
+    },
+    "loggers": {
+      "root": {
+        "level": "all",
+        "AppenderRef": {
+          "ref": "ReportPortalAppender"
+        }
+      }
+    }
+  }
+}

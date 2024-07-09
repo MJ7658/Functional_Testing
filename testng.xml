@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="IDP Functional UI Tests">
+	<test name="ChromeBrowserTest">
+	<parameter name="browserType" value="chrome" />
+		<classes>
+ 	        <class name="org.idp.pipelineeditor.TC_Workflow" />
+			<class name="org.idp.pipelineeditor.TC_Pipeline_Parameters" />
+			<class name="org.idp.environments.TC_environmentsManagement" />
+			<class name="org.idp.pipelineeditor.TC_InSeq_Execution_of_Pipeline" />
+			<class name="org.idp.PortfolioTemplate.TC_PortfolioTemplate" />
+			<class name="org.idp.applicationWorkflow.TC_applicationWorkflow" />
+			<class name="org.idp.plugins.TC_AngularBuild_Plugin" />
+			<class name="org.idp.plugins.TC_Blackduck_plugin" />
+			<class name="org.idp.plugins.TC_CodeQL_Analyze_plugin" />
+			<class name="org.idp.plugins.TC_FORTIFY_DAST_Plugin" />
+			<class name="org.idp.plugins.TC_FORTIFY_SAST_Plugin" /> 
+			<class name="org.idp.plugins.TC_Gitscm" />
+			<class name="org.idp.plugins.TC_ITAF_Execution_plugin" /> 
+			<class name="org.idp.plugins.TC_JiraUpdate_plugin" />
+            <class name="org.idp.plugins.TC_Jmeter_plugin" />
+			<class name="org.idp.plugins.TC_k8s_CustomDeploy_plugin" />
+			<class name="org.idp.plugins.TC_N_Plugin_Build_Upload_Promotion_plugin" />
+			<class name="org.idp.plugins.TC_Newman_postman_plugin" />
+			<class name="org.idp.plugins.TC_Selenium_plugin" />
+			<class name="org.idp.plugins.TC_SeleniumTestNG_plugin" />
+			<class name="org.idp.plugins.TC_SoupUI" />
+			<class name="org.idp.plugins.TC_Go_Build_UnitTest_Coverage_Lint__plugin" />
+			<class name="org.idp.toolsCompliance.TC_Lock_Plugin_Fields" />
+			<class name="org.idp.auditlogs.TC_AuditLogs" />
+			<class name="org.idp.releaseManagement.TC_releaseManagement" />
+			<class name="org.idp.policyManagement.TC_PolicyManagement" />
+			<class name="org.idp.platformToolIntegration.TC_Tools_Integration"/> 
+			<class name="org.idp.workermanagement.TC_WokerTestCase1" />
+			<class name="org.idp.workermanagement.TC_PlatformLevel_WorkerTestCase" />
+			<class name="org.plugins.ITAF" />
+            <class name="org.plugins.JMETER" />
+			<class name="org.plugins.DOTNET_BUILD" />
+			<class name="org.plugins.GITSCM" />
+			<class name="org.plugins.IFAST" />
+			<class name="org.plugins.ANDROID_LINT" />
+			<class name="org.plugins.ANGULAR_BUILD" />
+			<class name="org.plugins.PYTHON_BUILD" />
+			<class name="org.plugins.SonarQube" />
+			<class name="org.plugins.TSLINT_CODE_ANALYSIS" />
+			<class name="org.infy.Create_Application" />
+			<class name="org.infy.Portfolio_Test" />
+			<class name="org.infy.Variable_Test" />
+			<class name="org.infy.Reports_Test" />
+			<class name="org.infy.PoliciesTest" />
+			<class name="org.infy.ApplicationAudit" />
+			<class name="org.infy.Pipeline_Template_Test" />
+			<class name="org.infy.agileDashboardJiraReport" />
+			<class name="org.idp.pipelineTrends.TC_Pipeline_Trends"/>
+		 	<!--
+		 				<class name="org.idp.portfolioLevel_Dashboard.TC_PortfolioLevel_Dashboard"/> 
+		 				<class name="org.idp.platformLevel_Dashboard.TC_PlatformLevel_Dashboard"/> 
+		 		<class name="org.idp.toolsintegration.TC_Tools_Integration" />
+            <class name="org.idp.toolsCompliance.TC_Gating_plugin_Fields"/> -->
+		</classes>
+	</test>
+</suite>
+ 
+
+
+ 

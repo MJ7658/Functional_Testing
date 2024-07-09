@@ -1,0 +1,78 @@
+{
+	"portfolioName": "autoTestingPort",
+	"Release Name" : "Rel_0.0.1",
+	"Environment" : "Env1",
+	"Agent Name"  :"agentAutomation_1",
+	"startDate" : "1",
+	"endDate":"30",
+	"Variable Name":"varAuto_1",
+	"Default Value":"defaultAuto_0",
+	"EnvironmentsCategories": [{"EnvName": "Env1",
+									"Env":"Dev"},
+								{"EnvName": "Env2",
+									"Env":"QA"},
+								{"EnvName": "Env3",
+									"Env":"Prod"}],
+	"owners":[{
+		"ownerid":"test1@infosys.com"},{
+		"ownerid":"test2@infosys.com"}],
+	"PolicyDetails":{
+		"selectPolicy":"Other",
+		"policyName":"Policy Owner",
+		"AssignPermissions":[{
+			"Resources":[{
+				"ResourceType":"Portfolio",
+				"Permission":"VIEW",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Portfolio",
+				"Permission":"EDIT",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Portfolio",
+				"Permission":"DELETE",
+				"ResourcePattern":"*"
+				}]},{
+			"Resources":[{
+				"ResourceType":"Application",
+				"Permission":"EDIT",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Application",
+				"Permission":"CREATE",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Application",
+				"Permission":"DELETE",
+				"ResourcePattern":"*"
+				}]
+		}],
+		"Users":[{
+			"ownerid":"test3@infosys.com"},{
+			"ownerid":"test4@infosys.com"
+			}]
+	},
+	
+	"Edit_Portfolio":{
+		"Release Name" : "Rel_0.0.2",
+		"Environment" : "Env2",
+		"Agent Name"  :"agentAutomation_2",
+		"Variable Name":"varAuto_2",
+		"Default Value":"defaultAuto_1",
+		"editEnv":"Env1",
+		"environmentValue":"Prod",
+		"PolicyDetails":{
+			"AssignPermissions":[{
+				"Resources":[{
+					"ResourceType":"Environment",
+					"Permission":"VIEW",
+					"ResourcePattern":"*"},{
+					"ResourceType":"Environment",
+					"Permission":"EDIT",
+					"ResourcePattern":"*"},{
+					"ResourceType":"Environment",
+					"Permission":"DELETE",
+					"ResourcePattern":"*"
+					}]
+			}]
+		}
+	
+	}
+
+}

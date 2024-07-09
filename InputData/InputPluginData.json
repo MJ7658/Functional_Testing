@@ -1,0 +1,353 @@
+{
+"pipelines": [{
+		"applicationName": "IDP_Quality_Assurance_App",
+		"applicationName1": "IDP_Quality_Assurance_App",
+		"name": "Pip_",
+		"pipelineFlowType": "",
+		"variableName":"gitscm",
+		
+		"stages": [{
+			"name": "SCM",
+			"name1":"SCM1",
+			
+			"stage_env":"Dev",
+			"env":"QA",
+			"worker":"None",
+			"worker1":"IDP_QA_Worker_001",
+			"worker2":"IDP_QA_Worker_002",
+
+			"gitscm_tomcat": [{
+				"name": "gitscm",
+				"pluginName": "gitscm_0.0.21",
+				"pluginInput": {
+					"browser": "Chrome",
+					"browserUrl": "null",
+					"Git Provider": "Default",
+					"gitUrl": "https://infygithub.ad.infosys.com/idp-sample-apps-for-verification/bankapp.git",
+					"username": "thanusuya.r",
+					"password": "${",
+					"branchPattern": "master",
+					"unsetProxy": "null"
+					
+						}
+					}],
+			"GITSCM": [{
+				"name": "GITSCM",
+				"pluginName": "gitscm_0.0.21",
+				"pluginInput": {
+					"browser": "Chrome",
+					"browserUrl": "null",
+					"Git Provider": "Default",
+					"gitUrl": "https://infygithub.ad.infosys.com/thanusuya-r/IDP_Functional.git",
+					"username": "thanusuya.r",
+					"password": "${",
+                                        "branchPattern": "",
+					"unsetProxy": "null",
+					"branch": "main"
+						}
+					}],
+					"gitscm_var": [{
+				"name": "gitscm_var",
+				"pluginName": "gitscm_0.0.21",
+				"pluginInput": {
+					"browser": "Chrome",
+					"browserUrl": "null",
+					"Git Provider": "Default",
+					"gitUrl": "https://infygithub.ad.infosys.com/thanusuya-r/IDP_Functional.git",
+					"username": "thanusuya.r",
+					"password": "${",
+					"branchPattern": "main",
+					"unsetProxy": "null",
+					"branch": "main"
+						}
+					}],
+			"gitscm1": [{
+				"name": "gitscm",
+				"pluginName": "gitscm_0.0.21",
+				"pluginInput": {
+					"Git Provider": "Default",
+					"gitUrl": "https://infygithub.ad.infosys.com/sumit-rawat04/dockerregistry.git",
+					"username": "thanusuya.r",
+					"password": "${",
+					"branchPattern": "master",
+					"unsetProxy": "null"
+				
+						}
+					}],
+
+				"GITSCM_MAVEN": [{
+				"name": "GITSCM_MAVEN",
+				"pluginName": "gitscm_0.0.21",
+				"pluginInput": {
+					"Git Provider": "Default",
+					"gitUrl": "https://infygithub.ad.infosys.com/thanusuya-r/Maven_Project.git",
+					"username": "thanusuya.r",
+					"password": "${",
+					"branchPattern": "main",
+					"unsetProxy": "null",
+                                        "GitTokenVariable":"Git_token"				
+						}
+					}],
+
+					"gitscm_angular": [{
+				"name": "gitscm",
+				"pluginName": "gitscm_0.0.21",
+				"pluginInput": {
+					"Git Provider": "Default",
+					"gitUrl": "https://infygithub.ad.infosys.com/thanusuya-r/Angular.git",
+					"username": "thanusuya.r",
+					"password": "${",
+					"branchPattern": "main",
+					"unsetProxy": "null"
+				
+						}
+					}],
+					
+			"MAVEN_PACKAGE": [{
+				"name": "MAVEN_PACKAGE",
+				"pluginName": "MAVEN_PACKAGE",
+				"pluginInput": {
+					"pomFile": "Maven_Project/pom.xml"
+					}
+				}],
+			"Docker_Maven": [{
+				"name": "Maven Package",
+				"pluginName": "Maven Package",
+				"pluginInput": {
+					"pomFile": "dockerregistry/pom.xml"
+					}
+				}],
+				"tomcat_maven": [{
+				"name": "Maven Package",
+				"pluginName": "Maven Package",
+				"pluginInput": {
+					"pomFile": "bankapp/pom.xml"
+					}
+				}],
+			"Blazemeter": [{
+				"name": "Blazemeter",
+				"pluginName": "Blazemeter_0.0.10",
+				"pluginInput": {
+					"blazemeterUrl": "https://a.blazemeter.com",
+					"blazemeterApiKey": "12b0b7730cb53add51f5ef2f",
+					"blazemeterApiSecret": "053074db255556bac78c8ebee9eb118edf36af1dec0afb65818f3b1b6016b03c0d6cfbde",
+					"blazemeterTestType": "SINGLE",
+					"blazemeterTestId": "7458944",
+					"blazemeterProxyIp": "10.74.91.103",
+					"blazemeterProxyPort": "80",
+					"blazemeterProxyUsername": "venkatalakshmikal.s",
+					"blazemeterProxyPassword": "kal@7228S"
+					}
+				}],
+		 	"DOCKER_DEPLOY": [{
+				"name": "DOCKER_DEPLOY",
+				"pluginName": "docker_deploy.0.10",
+				"pluginInput": {
+					"dockerFilePath": "C://username",
+					"dockerRegistryUrl": "dfd",
+					"dockerRepo": "asds",
+					"dockerUsername": "sdsds",
+					"dockerPassword": "sds",
+					"stackName": "MyStack",
+					"tagName": "MyTag"
+				}
+			}],
+			
+			"DOTNET_BUILD": [{
+				"name": "DOTNET_BUILD",
+				"pluginName": "DOTNET_BUILD",
+				"pluginInput": {
+					"solutionFile": "-restore",
+					"msbuildArguments": "-restore"
+				}
+			}],
+			
+			"ANGULAR_BUILD": [{
+				"name": "ANGULAR_BUILD",
+				"pluginName": "Angular Build_0.0.1",
+				"pluginInput": {
+					"compileArgument": "npm run build",
+					"npmArgument": "install --unsafe-perm",
+					"workingDirectory": "Angular"
+				}
+			}],
+				
+			"TSLINT_CODE_ANALYSIS": [{
+				"name": "TSLINT_CODE_ANALYSIS",
+				"pluginName": "TSLINT_CODE_ANALYSIS",
+				"pluginInput": {
+					"workingDirectory": "angular-shopping-cart",
+					"arguments": "Zxs"
+				}
+			}],
+	
+			"SonarQube": [{
+				"name": "SonarQube",
+				"pluginName": "SonarQube",
+				"pluginInput": {
+					"serverUrl": "http://infysonarqube:8080",
+					"userToken": "",
+					"password": "${",
+					"propertiesFilePath": "bankapp/sonar-project.properties",
+					"projectKey": "DXOHSTP_Angular_WorkBench"
+				}
+			}],
+			
+			"docker_build_&_push": [{
+				"name": "docker_build_&_push",
+				"pluginName": "docker_build_&_push",
+				"pluginInput": {
+					"dockerFilePath": "dockerregistry/DockerfileIDP",
+					"dockerRegistryUrl": "https://infyartifactory.ad.infosys.com",
+					"dockerPassword": "${",
+					"dockerRepo": "infydtr/idp/portfoliosvc",
+					"dockerUsername": "idpuser",
+					"tagName": "Demo"					
+				}
+			}],
+			
+			"IFAST": [{
+				"name": "IFAST",
+				"pluginName": "IFAST",
+				"pluginInput": {
+					"iFastProjectName": "WorkFromHome",	
+					"iFastURL": "http://10.122.125.105:7475/iFast_NewWeb_Infosys",
+					"iFastUsername": "nagarajan.palavesam",
+                                        "iFastPassword_0": "XXXXXXXXXXX"									
+				}
+			}],
+			
+			"ANDROID_LINT": [{
+				"name": "ANDROID_LINT",
+				"pluginName": "ANDROID_LINT",
+				"pluginInput": {
+					"workingDirectory":"android"							
+				}
+			}],
+			
+			"tomcat":[{
+				"name": "tomcat",
+				"pluginName":"tomcat",
+				"pluginInput":{
+					"contextPath":"Thanu",
+					"serverManagerUrl":"http://vqauto151:7979",
+					"tomcatPassword":"tomcatadmin",
+					"tomcatUsername":"tomcatadmin",
+					"warPath":"bankapp/target/BankAPP1-0.0.1-SNAPSHOT.war"
+				}
+			}],
+			
+			"PYTHON_BUILD":[{
+				"name": "PYTHON_BUILD",
+				"pluginName": "PYTHON_BUILD",
+				"pluginInput":{
+					"requirementFileDirectory":"Insights",
+					"setupFileDirectory":"Insights",
+					" Packaging type ":"Zip"
+				}
+			}],
+			
+			"JMETER" : [{
+				"name": "JMETER",
+				"pluginName": "JMETER",
+				"pluginInput": {
+					"jmxFile": "IDP_Functional/Users.jmx"								
+				}
+			}],
+			
+			"ITAF" : [{
+				"name": "ITAF",
+				"pluginName": "ITAF",
+				"pluginInput": {
+					"iTafUrl": "https://itafappser.ad.infosys.com:8886/",
+					"iTafUsername": "nagarajan.palavesam",
+					"iTafAgent":"agent-Nagarajan",
+					"iTafProject":"Modernize_IMP",
+					"browser":"Chrome",
+					"testSuites":"Enabling_Pack"							
+				}
+			}],
+			"Python Lint" : [{
+					"name" : "Python Lint",
+					"pluginName":"Python Lint",
+					"pluginInput": {
+						"pythonRootDirectory" : "/IDP_Modernization"
+					}
+				
+			
+			}],
+			"Docker Swarm Deploy" : [{
+					"name" : "Docker Swarm Deploy",
+					"pluginName": "Docker Swarm Deploy",
+					"pluginInput": {
+						"dockerFilePath": "deckerregistry/Dockerfile",
+						"dockerRegistryUrl": "infydtr.ad.infosys.com",
+						"dockerRepo": "sdd",
+						"dockerUsername": "docker",
+						"dockerPassword": "dfd",
+						"stackName":"sdf",
+						"tagName": "Demo1"
+					}
+			}],
+			
+			"Selenium" : [{
+					"name" : "Selenium",
+					"pluginName":"Selenium",
+					"pluginInput": {
+						"pomFilePath" : "/IDP_Modernization/pom.xml",
+						"testNgFiles" : "/IDP_Modernization/testng.xml"
+					}
+				
+			
+			}],
+			
+			"agileDashboardJiraReport" :[{
+				"name" : "agileDashboardJiraReport",
+				"pluginName":"agileDashboardJiraReport",
+				"pluginInput": {
+					"jiraurl" : "https://infosysjira.tools.infosysapps.com/",
+					"jiraprojectname" : "QAUTOIDP",
+					"jiraUsername"  : "thanusuya.r",
+					"jirapassword": "${"
+					
+					}
+			}],
+	
+			
+			"continuum" :[{
+				"name" : "continuum",
+				"pluginName":"continuum",
+				"pluginInput": {
+					"url": "http://10.82.153.144:9873",
+					"token": "5fe469785aef945f6d8a8560",
+					"want": "dashboardData",
+					"package": "Maven-DockerSwarm",
+					"progression": "Maven-DockerSwarm",
+					"version": "necessity_demo"
+					}
+			}],
+			
+			"iisdeploy":[{
+				"name":"iisdeploy",
+				"pliginName":"iisdeploy_0.0.3",
+				"pluginInput":{
+					"projectPath":"/functional_ui_mod",
+					"machineName":"Kalyani",
+					"userName":"venkatalakshmikal.s",
+					"password":"kal@7228S"
+				
+				}
+			}],
+			
+			"SoapUI":[{
+				"name":"SoapUI",
+				"pliginName":"SoapUI_0.0.21",
+				"pluginInput":{
+					"projectPath":"/functional_ui_mod"
+				}
+			}]
+			
+			
+		}]
+	}]
+}

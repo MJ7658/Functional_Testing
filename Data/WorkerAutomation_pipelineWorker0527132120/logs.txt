@@ -1,0 +1,1 @@
+{"ApplicationName":"WorkerAutomation","Environment":"","PipelineName":"pipelineWorker0527132120","StageName":"stage1","TaskName":"sleep","TriggerNumber":"WorkerAutomation-pipelineWorker0527132120-Release1-1","level":"info","msg":"Waiting for 100 seconds","time":"2024-05-27T13:26:07+05:30"}

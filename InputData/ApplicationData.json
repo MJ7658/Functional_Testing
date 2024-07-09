@@ -1,0 +1,110 @@
+{
+	"applicationName": "IDP_Quality_Assurance_App",
+	"portfolioName": "IDP_Quality_Assurance",
+	"Release Name" : "Rel_0.0.1",
+	"Environment" : "New_Env",
+	"startDate" : "1",
+	"endDate":"4",
+	"Agent Name"  :"agentAutomation_1",
+	"Variable Name":"account",
+	"Variable Name1":"Demo",
+	"Default Value1":"password",
+	"SecretValue": "true",
+	"Environment1":"QA",
+	"Value":"",
+	"Default Value":"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",
+	"envName":"Prod",
+	"EnvironmentsCategories": [
+					{"EnvName": "Thanu_Env",
+					"Env":"Dev"},
+					{"EnvName": "New_Env",
+					"Env":"QA"}],
+	
+	"owners":[{"ownerid":"namrata_ramnani@infosys.com"},{"ownerid":"thanusuya.r@infosys.com"},
+		  {"ownerid":"nagarajan.palavesam@infosys.com"},{"ownerid":"satheshkumar.m@infosys.com"}],
+		  "Edit_Policy":{
+		"selectPolicy":"Other",
+		"policyName":"Policy_Owners",
+		"AssignPermissions":[{
+			"Resources":[{
+				"ResourceType":"Variable",
+				"Permission":"CREATE",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Variable",
+				"Permission":"EDIT",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Variable",
+				"Permission":"DELETE",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Variable",
+				"Permission":"VIEW",
+				"ResourcePattern":"*"
+				}]
+		}]
+		},
+	"PolicyDetails":{
+		"selectPolicy":"Other",
+		"policyName":"Policy_Owners",
+		"AssignPermissions":[{
+			"Resources":[{
+				"ResourceType":"Workflow (Application)",
+				"Permission":"CREATE",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Workflow (Application)",
+				"Permission":"EDIT",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Workflow (Application)",
+				"Permission":"DELETE",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Workflow (Application)",
+				"Permission":"EXECUTE",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Variable",
+				"Permission":"EDIT",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Variable",
+				"Permission":"CREATE",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Variable",
+				"Permission":"DELETE",
+				"ResourcePattern":"*"}]
+		}],
+		
+		"Users":[{"ownerid":"namrata_ramnani@infosys.com"},{"ownerid":"thanusuya.r@infosys.com"},
+		  {"ownerid":"nagarajan.palavesam@infosys.com"}]
+	},
+	
+	"Edit_Application":{
+		"Release Name" : "Release_new_01",
+		"Environment" : "New_Env",
+		"Agent Name"  :"Thanu_001",
+		"Variable Name":"varAuto_2",
+		"startDate" : "2",
+		"Default Value":"defaultAuto_1",
+		"editEnv":"New_Env",
+		"environmentValue":"QA",
+		"PolicyDetails":{
+			"AssignPermissions":[{
+				"Resources":[{
+					"ResourceType":"Environment",
+					"Permission":"VIEW",
+					"ResourcePattern":"*"},{
+					"ResourceType":"Environment",
+					"Permission":"EDIT",
+					"ResourcePattern":"*"},{
+					"ResourceType":"Environment",
+					"Permission":"DELETE",
+					"ResourcePattern":"*"
+					}]
+			}]
+		}
+		
+	
+	}
+	
+	
+	
+}
+
+
+

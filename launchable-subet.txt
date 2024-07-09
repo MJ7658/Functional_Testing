@@ -1,0 +1,6 @@
+org.infy.WorkFlow_Test
+org.infy.Pipeline_Template_Test
+org.infy.Portfolio_Test
+org.infy.PoliciesTest
+org.infy.Reports_Test
+org.infy.Variable_Test

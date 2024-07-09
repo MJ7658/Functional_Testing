@@ -1,0 +1,17 @@
+Executor 2024/05/27 13:09:04 Received execution instructions under Application Name : WorkerAutomation
+Executor 2024/05/27 13:09:04 Executing Pipeline : pipelineWorker0527130432
+Executor 2024/05/27 13:09:04 Re-using execution ID
+Executor 2024/05/27 13:09:04 Execution ID : WorkerAutomation-pipelineWorker0527130432-Release1-1
+Executor 2024/05/27 13:09:04 Fetching latest metadata false true
+Executor 2024/05/27 13:09:05 Executing Stage : stage1
+Executor 2024/05/27 13:09:05 Executing Task : sleep
+Executor 2024/05/27 13:09:05 Executing path :%v D:\IDP\FunctionalScriptIDP\Data/WorkerAutomation_pipelineWorker0527130432
+Executor 2024/05/27 13:09:07 Plugin detected in local
+Executor 2024/05/27 13:09:07 Substituting variables in execution JSON with ENV variables...
+Executor 2024/05/27 13:10:48 Time taken for plugin exec = 1m41.1709466s
+Executor 2024/05/27 13:10:48 Task 'sleep' executed successfully
+Executor 2024/05/27 13:10:48 Task execution time: 1m42.3210605s
+Executor 2024/05/27 13:10:48 Stage 'stage1' executed successfully
+Executor 2024/05/27 13:10:48 Stage Execution Time: 1m42.7096541s
+Executor 2024/05/27 13:10:48 Pipeline 'pipelineWorker0527130432' executed successfully
+Executor 2024/05/27 13:10:48 Pipeline execution time: 1m44.020956s

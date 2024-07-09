@@ -1,0 +1,13 @@
+{
+	"pipelineName":"TestPipeline3584",
+	"Stage1WorkflowName1":"Thanu_Application_TestPipeline9742",
+	"Stage1WorkflowName2":"Thanu_Application_TestPipeline3652",
+	"Stage1WorkflowName3":"Thanu_Application_TestPipeline3877",
+	"Stage2WorkflowName1":"Thanu_Application_TestPipeline6143",
+	"Stage2WorkflowName2":"Thanu_Application_TestPipeline4750",
+	"Stage2WorkflowName3":"Thanu_Application_TestPipeline908",
+	"Stage3WorkflowName1":"Thanu_Application_TestPipeline4036",
+	"workerName1": "application:Thanu_Application_Thanu_001",
+	"workerName2": "application:Thanu_Application_Thanu_001",
+	"workerName3": "application:Thanu_Application_Thanu_001"
+}

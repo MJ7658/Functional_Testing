@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config>
+<env>QA</env>
+<browser>Chrome</browser>
+<url>http://10.82.153.15/idpapp/</url>
+</config>

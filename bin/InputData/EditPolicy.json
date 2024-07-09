@@ -1,0 +1,23 @@
+{
+
+"Edit_PolicyDetails":{
+		"selectPolicy":"Other",
+		"policyName":"Policy_Owners5932",
+		"AssignPermissions":[{
+			"Resources":[{
+				"ResourceType":"Variable",
+				"Permission":"CREATE",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Variable",
+				"Permission":"EDIT",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Variable",
+				"Permission":"DELETE",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Variable",
+				"Permission":"VIEW",
+				"ResourcePattern":"*"
+				}]
+		}]
+		}
+		}

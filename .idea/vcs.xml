@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Data/WorkerAutomation_gitSCMPlugin_webhookTestPipe/webhookTestNew" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0306135044/SoapUI_Test" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0306140240/SoapUI_Test" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0308154017/SoapUI_Test" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0308170540/SoapUI_Test" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0308213255/FunctionalAutomationSeleniumScripts" vcs="Git" />
+  </component>
+</project>

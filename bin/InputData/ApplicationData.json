@@ -1,0 +1,80 @@
+{
+	"applicationName": "Thanu_app",
+	"portfolioName": "Sumit",
+	"Release Name" : "Rel_0.0.1",
+	"Environment" : "Env1",
+	"startDate" : "1",
+	"endDate":"30",
+	"Agent Name"  :"agentAutomation_1",
+	"Variable Name":"varAuto_1",
+	"Default Value":"defaultAuto_0",
+	"EnvironmentsCategories": [
+					{"EnvName": "Env1",
+					"Env":"Dev"},
+					{"EnvName": "Env2",
+					"Env":"Prod"}],
+	"owners":[{"ownerid":"namrata_ramnani@infosys.com"},
+		  {"ownerid":"test7@infosys.com"}],
+	"PolicyDetails":{
+		"selectPolicy":"Other",
+		"policyName":"Policy Owners",
+		"AssignPermissions":[{
+			"Resources":[{
+				"ResourceType":"Pipeline",
+				"Permission":"VIEW",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Pipeline",
+				"Permission":"EDIT",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Pipeline",
+				"Permission":"DELETE",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Pipeline",
+				"Permission":"EXECUTE",
+				"ResourcePattern":"*"
+				}]},{
+			"Resources":[{
+				"ResourceType":"Application",
+				"Permission":"EDIT",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Application",
+				"Permission":"VIEW",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Application",
+				"Permission":"DELETE",
+				"ResourcePattern":"*"
+				}]
+		}],
+		"Users":[{
+			"ownerid":""},{
+			"ownerid":""
+			}]
+	},
+	
+	"Edit_Application":{
+		"Release Name" : "Rel_0.0.2",
+		"Environment" : "Env2",
+		"Agent Name"  :"agentAutomation_2",
+		"Variable Name":"varAuto_2",
+		"Default Value":"defaultAuto_1",
+		"editEnv":"Env1",
+		"environmentValue":"Prod",
+		"PolicyDetails":{
+			"AssignPermissions":[{
+				"Resources":[{
+					"ResourceType":"Environment",
+					"Permission":"VIEW",
+					"ResourcePattern":"*"},{
+					"ResourceType":"Environment",
+					"Permission":"EDIT",
+					"ResourcePattern":"*"},{
+					"ResourceType":"Environment",
+					"Permission":"DELETE",
+					"ResourcePattern":"*"
+					}]
+			}]
+		}
+	
+	}
+	
+}

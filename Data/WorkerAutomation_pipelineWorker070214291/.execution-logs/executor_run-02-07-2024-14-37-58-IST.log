@@ -1,0 +1,47 @@
+Executor 2024/07/02 14:37:58 Received execution instructions under Application Name : WorkerAutomation
+Executor 2024/07/02 14:37:58 Executing Pipeline : pipelineWorker070214291
+Executor 2024/07/02 14:37:58 Re-using execution ID
+Executor 2024/07/02 14:37:58 Execution ID : WorkerAutomation-pipelineWorker070214291-Release1-1
+Executor 2024/07/02 14:37:58 Fetching latest metadata false true
+Executor 2024/07/02 14:37:59 Executing Stage : stage3
+Executor 2024/07/02 14:37:59 Executing Task : cmdexec
+Executor 2024/07/02 14:37:59 Executing path :%v C:\FunctionalScriptIDP\FunctionalScriptIDP\Data/WorkerAutomation_pipelineWorker070214291
+Executor 2024/07/02 14:38:00 Plugin detected in local
+Executor 2024/07/02 14:38:00 Substituting variables in execution JSON with ENV variables...
+Executor 2024/07/02 14:38:19 Time taken for plugin exec = 18.8770765s
+Executor 2024/07/02 14:38:19 Task 'cmdexec' executed successfully
+Executor 2024/07/02 14:38:19 Task execution time: 20.3479617s
+Executor 2024/07/02 14:38:19 Stage 'stage3' executed successfully
+Executor 2024/07/02 14:38:19 Stage Execution Time: 20.4168096s
+Executor 2024/07/02 14:38:19 Executing Stage : stage2
+Executor 2024/07/02 14:38:19 Executing Task : cmdexec
+Executor 2024/07/02 14:38:19 Executing path :%v C:\FunctionalScriptIDP\FunctionalScriptIDP\Data/WorkerAutomation_pipelineWorker070214291
+Executor 2024/07/02 14:38:21 Plugin detected in local
+Executor 2024/07/02 14:38:21 Substituting variables in execution JSON with ENV variables...
+Executor 2024/07/02 14:38:38 Time taken for plugin exec = 17.2218811s
+Executor 2024/07/02 14:38:38 Task 'cmdexec' executed successfully
+Executor 2024/07/02 14:38:38 Task execution time: 18.6011844s
+Executor 2024/07/02 14:38:38 Stage 'stage2' executed successfully
+Executor 2024/07/02 14:38:38 Stage Execution Time: 18.7783459s
+Executor 2024/07/02 14:38:38 Executing Stage : stage1
+Executor 2024/07/02 14:38:38 Executing Task : cmdexec
+Executor 2024/07/02 14:38:38 Executing path :%v C:\FunctionalScriptIDP\FunctionalScriptIDP\Data/WorkerAutomation_pipelineWorker070214291
+Executor 2024/07/02 14:38:39 Plugin detected in local
+Executor 2024/07/02 14:38:39 Substituting variables in execution JSON with ENV variables...
+Executor 2024/07/02 14:38:52 Time taken for plugin exec = 12.866862s
+Executor 2024/07/02 14:38:52 Task 'cmdexec' executed successfully
+Executor 2024/07/02 14:38:52 Task execution time: 14.016628s
+Executor 2024/07/02 14:38:52 Stage 'stage1' executed successfully
+Executor 2024/07/02 14:38:52 Stage Execution Time: 14.2691724s
+Executor 2024/07/02 14:38:52 Executing Stage : stage4
+Executor 2024/07/02 14:38:52 Executing Task : cmdexec
+Executor 2024/07/02 14:38:52 Executing path :%v C:\FunctionalScriptIDP\FunctionalScriptIDP\Data/WorkerAutomation_pipelineWorker070214291
+Executor 2024/07/02 14:38:54 Plugin detected in local
+Executor 2024/07/02 14:38:54 Substituting variables in execution JSON with ENV variables...
+Executor 2024/07/02 14:39:04 Time taken for plugin exec = 10.1080424s
+Executor 2024/07/02 14:39:04 Task 'cmdexec' executed successfully
+Executor 2024/07/02 14:39:04 Task execution time: 11.8408013s
+Executor 2024/07/02 14:39:05 Stage 'stage4' executed successfully
+Executor 2024/07/02 14:39:05 Stage Execution Time: 12.1290419s
+Executor 2024/07/02 14:39:05 Pipeline 'pipelineWorker070214291' executed successfully
+Executor 2024/07/02 14:39:05 Pipeline execution time: 1m6.7548054s

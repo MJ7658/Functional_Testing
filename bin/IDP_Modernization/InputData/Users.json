@@ -1,0 +1,13 @@
+{
+	"url": "http://10.82.153.15/idpapp/",
+	"users": [ {
+		"user": "test.invalid1",
+		"password": "MTIzNA=="
+	}, {
+		"user": "idpadmin@infosys.com",
+		"password": "idpadmin@123"
+	}, {
+		"user": "hello",
+		"password": "NTY4"
+	}]
+}

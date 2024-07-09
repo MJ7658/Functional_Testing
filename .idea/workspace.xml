@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4305e712-e9c3-42f2-94aa-2ea50015bb87" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker010411091/.execution-logs/executor_run-04-01-2023-11-12-03-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker010411091/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker010411091-Release1WorkerAutomationpipelineWorker010411091-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0104111258/.execution-logs/executor_run-04-01-2023-11-16-32-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0104111258/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0104111258-Release1WorkerAutomationpipelineWorker0104111258-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0109171024/.execution-logs/executor_run-09-01-2023-17-15-22-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0109171024/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0109171024-Release1WorkerAutomationpipelineWorker0109171024-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0110175351/.execution-logs/executor_run-10-01-2023-17-57-33-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0110175351/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0110175351-Release1WorkerAutomationpipelineWorker0110175351-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0110201920/.execution-logs/executor_run-10-01-2023-20-22-34-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0110201920/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0110201920-Release1WorkerAutomationpipelineWorker0110201920-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0110203056/.execution-logs/executor_run-10-01-2023-20-34-04-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0110203056/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0110203056-Release1WorkerAutomationpipelineWorker0110203056-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0110210750/.execution-logs/executor_run-10-01-2023-21-10-52-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0110210750/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0110210750-Release1WorkerAutomationpipelineWorker0110210750-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0110211634/.execution-logs/executor_run-10-01-2023-21-19-36-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0110211634/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0110211634-Release1WorkerAutomationpipelineWorker0110211634-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011118203/.execution-logs/executor_run-11-01-2023-18-28-46-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011118203/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker011118203-Release1WorkerAutomationpipelineWorker011118203-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0111183518/.execution-logs/executor_run-11-01-2023-18-40-10-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0111183518/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0111183518-Release1WorkerAutomationpipelineWorker0111183518-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011119414/.execution-logs/executor_run-11-01-2023-19-45-45-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011119414/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker011119414-Release1WorkerAutomationpipelineWorker011119414-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0111205417/.execution-logs/executor_run-11-01-2023-20-59-06-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0111205417/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0111205417-Release1WorkerAutomationpipelineWorker0111205417-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113112153/.execution-logs/executor_run-13-01-2023-11-25-54-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113112153/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0113112153-Release1WorkerAutomationpipelineWorker0113112153-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113113653/.execution-logs/executor_run-13-01-2023-11-40-27-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113113653/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0113113653-Release1WorkerAutomationpipelineWorker0113113653-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113114659/.execution-logs/executor_run-13-01-2023-11-50-15-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113114659/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0113114659-Release1WorkerAutomationpipelineWorker0113114659-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113121255/.execution-logs/executor_run-13-01-2023-12-15-38-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113121255/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0113121255-Release1WorkerAutomationpipelineWorker0113121255-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113121656/.execution-logs/executor_run-13-01-2023-12-20-01-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113121656/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0113121656-Release1WorkerAutomationpipelineWorker0113121656-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113122530/.execution-logs/executor_run-13-01-2023-12-28-12-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113122530/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0113122530-Release1WorkerAutomationpipelineWorker0113122530-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113130316/.execution-logs/executor_run-13-01-2023-13-05-57-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113130316/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0113130316-Release1WorkerAutomationpipelineWorker0113130316-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011313115/.execution-logs/executor_run-13-01-2023-13-13-36-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011313115/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker011313115-Release1WorkerAutomationpipelineWorker011313115-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113133755/.execution-logs/executor_run-13-01-2023-13-40-30-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113133755/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0113133755-Release1WorkerAutomationpipelineWorker0113133755-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113140315/.execution-logs/executor_run-13-01-2023-14-06-14-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113140315/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0113140315-Release1WorkerAutomationpipelineWorker0113140315-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113141123/.execution-logs/executor_run-13-01-2023-14-14-06-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113141123/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0113141123-Release1WorkerAutomationpipelineWorker0113141123-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011314203/.execution-logs/executor_run-13-01-2023-14-23-44-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011314203/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker011314203-Release1WorkerAutomationpipelineWorker011314203-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011314371/.execution-logs/executor_run-13-01-2023-14-40-01-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011314371/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker011314371-Release1WorkerAutomationpipelineWorker011314371-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113144534/.execution-logs/executor_run-13-01-2023-14-48-59-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113144534/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0113144534-Release1WorkerAutomationpipelineWorker0113144534-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011315031/.execution-logs/executor_run-13-01-2023-15-07-59-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011315031/.execution-logs/executor_run-13-01-2023-15-10-09-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011315031/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker011315031-Release1WorkerAutomationpipelineWorker011315031-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011315031/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker011315031-Release1WorkerAutomationpipelineWorker011315031-2.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011315445/.execution-logs/executor_run-13-01-2023-15-47-29-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011315445/.execution-logs/executor_run-13-01-2023-15-48-40-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011315445/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker011315445-Release1WorkerAutomationpipelineWorker011315445-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011315445/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker011315445-Release1WorkerAutomationpipelineWorker011315445-2.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113155733/.execution-logs/executor_run-13-01-2023-16-00-20-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113155733/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0113155733-Release1WorkerAutomationpipelineWorker0113155733-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113162029/.execution-logs/executor_run-13-01-2023-16-23-29-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113162029/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0113162029-Release1WorkerAutomationpipelineWorker0113162029-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113163446/.execution-logs/executor_run-13-01-2023-16-37-31-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113163446/.execution-logs/executor_run-13-01-2023-16-38-52-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113163446/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0113163446-Release1WorkerAutomationpipelineWorker0113163446-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113163446/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0113163446-Release1WorkerAutomationpipelineWorker0113163446-2.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011316526/.execution-logs/executor_run-13-01-2023-16-54-52-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker011316526/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker011316526-Release1WorkerAutomationpipelineWorker011316526-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113165918/.execution-logs/executor_run-13-01-2023-17-02-07-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0113165918/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0113165918-Release1WorkerAutomationpipelineWorker0113165918-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0119164745/.execution-logs/executor_run-19-01-2023-16-53-32-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0119164745/.execution-logs/executor_run-19-01-2023-16-58-14-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0119164745/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0119164745-Release1WorkerAutomation-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0119164745/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0119164745-Release1WorkerAutomation-2.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0120185628/.execution-logs/executor_run-20-01-2023-19-01-10-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0120185628/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0120185628-Release1WorkerAutomation-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0120185628/.execution-logs/stage2_cmdexec_WorkerAutomation-pipelineWorker0120185628-Release1WorkerAutomation-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0120185628/.execution-logs/stage3_cmdexec_WorkerAutomation-pipelineWorker0120185628-Release1WorkerAutomation-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0120185628/.execution-logs/stage4_cmdexec_WorkerAutomation-pipelineWorker0120185628-Release1WorkerAutomation-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0120190417/.execution-logs/executor_run-20-01-2023-19-08-36-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0120190417/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0120190417-Release1WorkerAutomation-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0120190417/.execution-logs/stage2_cmdexec_WorkerAutomation-pipelineWorker0120190417-Release1WorkerAutomation-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0120190417/.execution-logs/stage3_cmdexec_WorkerAutomation-pipelineWorker0120190417-Release1WorkerAutomation-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0120190417/.execution-logs/stage4_cmdexec_WorkerAutomation-pipelineWorker0120190417-Release1WorkerAutomation-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0120192655/.execution-logs/executor_run-20-01-2023-19-29-42-IST.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerAutomation_pipelineWorker0120192655/.execution-logs/stage1_cmdexec_WorkerAutomation-pipelineWorker0120192655-Release1WorkerAutomation-1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/WorkerExpected.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Data/WorkerExpected.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/ZepyrBasicDetails.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Data/ZepyrBasicDetails.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/infy/commonHelpers/PipelineHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/infy/commonHelpers/PipelineHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/infy/commonHelpers/WorkerHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/infy/commonHelpers/WorkerHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/infy/init/BrowserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/infy/init/BrowserFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/infy/init/ListenersTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/infy/init/ListenersTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/idp/plugins/TC_FORTIFY_SAST_Plugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/idp/plugins/TC_FORTIFY_SAST_Plugin.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2DQjR0iHv9jpy3Gz0GTjrG7jqH6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "D:/FunctionalAutomation/FunctionalAutomationSeleniumScripts",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4305e712-e9c3-42f2-94aa-2ea50015bb87" name="Changes" comment="" />
+      <created>1660638191657</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1660638191657</updated>
+    </task>
+    <servers />
+  </component>
+</project>

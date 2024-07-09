@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration packages="com.epam.ta.reportportal.log4j.appender" status="WARN">
+	<Appenders>
+		<Console name="ConsoleAppender" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d [%t] %-5level %logger{36} - %msg%n%throwable" />
+		</Console>
+		<ReportPortalLog4j2Appender name="ReportPortalAppender">
+			<PatternLayout
+				pattern="%d [%t] %-5level %logger{36} - %msg%n%throwable" />
+		</ReportPortalLog4j2Appender>
+	</Appenders>
+	<appender name="ReportPortalAppender" class="com.epam.reportportal.logback.appender.ReportPortalAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%t] %-5level - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<Loggers>
+		<Root level="INFO">
+			<AppenderRef ref="ConsoleAppender" />
+			<AppenderRef ref="ReportPortalAppender" />
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="FILE" />
+			<appender-ref ref="ReportPortalAppender" />
+		</Root>
+		<Logger name="com.epam.reportportal" level="INFO" additivity="false">
+			<AppenderRef ref="ConsoleAppender" />
+			<AppenderRef ref="ReportPortalAppender" />
+		</Logger>
+		<Logger name="binary_data_logger" level="DEBUG" additivity="false">
+			<AppenderRef ref="ReportPortalAppender" />
+		</Logger>
+	</Loggers>
+</Configuration>

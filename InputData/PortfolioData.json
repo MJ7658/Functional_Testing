@@ -1,0 +1,114 @@
+{
+	"portfolioName": "Thanusuya",
+	"portfolioName1":"Thanusuya",
+	"Release Name" : "release001",
+	"Environment" : "Prod",
+	"Agent Name"  :"Thanu_001",
+	"startDate" : "1",
+	"endDate":"7",
+	"Variable Name":"varAuto_1",
+	"Default Value":"defaultAuto_0",
+	"Default Value1":"Demo_Variable",
+	"applicationName": "Thanu_Application",
+	"name": "TestPipeline",
+	"stageName":"Stage",
+	"pipelineName":"PipelineTemplate",
+	"EnvironmentsCategories": [{"EnvName": "Dev",
+									"Env":"Dev"},
+								{"EnvName": "QA",
+									"Env":"QA"},
+								{"EnvName": "Prod",
+									"Env":"Prod"}],
+	"owners":[{
+		"ownerid":"namrata_ramnani@infosys.com"},{
+		"ownerid":"nagarajan.palavesam@infosys.com"},
+		{"ownerid":"thanusuya.r@infosys.com"}
+		,{"ownerid":"satheshkumar.m@infosys.com"}],
+		"Edit_Policy":{
+		"selectPolicy":"Other",
+		"policyName":"Policy_Owners",
+		"AssignPermissions":[{
+			"Resources":[{
+				"ResourceType":"Variable",
+				"Permission":"CREATE",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Variable",
+				"Permission":"EDIT",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Variable",
+				"Permission":"DELETE",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Variable",
+				"Permission":"VIEW",
+				"ResourcePattern":"*"
+				}]
+		}]
+		},
+	"PolicyDetails":{
+		"selectPolicy":"Other",
+		"policyName":"Policy Owner",
+		"AssignPermissions":[{
+			"Resources":[{
+				"ResourceType":"Portfolio",
+				"Permission":"VIEW",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Portfolio",
+				"Permission":"EDIT",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Variable",
+				"Permission":"EDIT",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Variable",
+				"Permission":"CREATE",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Variable",
+				"Permission":"VIEW",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Variable",
+				"Permission":"DELETE",
+				"ResourcePattern":"*"},{
+				"ResourceType":"Portfolio",
+				"Permission":"DELETE",
+				"ResourcePattern":"*"
+				}]},{
+			"Resources":[{
+				"ResourceType":"Pipeline",
+				"Permission":"EDIT",
+				"ResourcePattern":"*"
+				}]
+		}],
+		"Users":[{
+		"ownerid":"namrata_ramnani@infosys.com"},{
+		"ownerid":"nagarajan.palavesam@infosys.com"},
+		{"ownerid":"thanusuya.r@infosys.com"}]
+	},
+	
+	"Edit_Portfolio":{
+		"Release Name" : "Rel_0.0.2",
+		"Environment" : "Dev",
+		"Agent Name"  :"Thanu_001",
+		"Variable Name":"varAuto_2",
+		"Default Value":"defaultAuto_1",
+		"editEnv":"Prod",
+		"environmentValue":"Prod",
+		"PolicyDetails":{
+			"AssignPermissions":[{
+				"Resources":[{
+					"ResourceType":"Environment",
+					"Permission":"VIEW",
+					"ResourcePattern":"*"},{
+					"ResourceType":"Environment",
+					"Permission":"EDIT",
+					"ResourcePattern":"*"},{
+					"ResourceType":"Environment",
+					"Permission":"DELETE",
+					"ResourcePattern":"*"
+					}]
+			}]
+		}
+	
+	}
+	
+	
+
+}
